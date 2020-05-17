@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
+    <Compile Include="Assets\Scripts\Extension\DictionaryExtension.cs" />
     <Compile Include="Assets\Scripts\UI\BasePanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanelInfo.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanelType.cs" />
     <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />

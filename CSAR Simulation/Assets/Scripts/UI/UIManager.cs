@@ -36,6 +36,11 @@ namespace UIFramework
         private Dictionary<UIPanelType, BasePanel> panelDic; //保存所有实例化面板的游戏物体身上的Panel组件
         private Stack<BasePanel> panelStack;
 
+        class UIPanelTypeJson
+        {
+            public List<UIPanelInfo> infoList;
+        }
+
         private UIManager()
         {
             ParseUIPanelTypeJson();
