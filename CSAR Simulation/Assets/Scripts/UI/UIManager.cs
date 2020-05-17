@@ -123,7 +123,7 @@ namespace UIFramework
         {
             panelPathDict = new Dictionary<UIPanelType, string>();
 
-            TextAsset ta = Resources.Load<TextAsset>("UIPanelType");
+            TextAsset ta = Resources.Load<TextAsset>("UI/UIPanelType");
 
             UIPanelTypeJson jsonObject = JsonUtility.FromJson<UIPanelTypeJson>(ta.text);
 
@@ -139,7 +139,7 @@ namespace UIFramework
         public void Test()
         {
             string path;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 5; i++)
             {
                 panelPathDict.TryGetValue((UIPanelType)i, out path);
                 Debug.Log(path);

@@ -1,0 +1,29 @@
+{
+"infoList":
+[
+    {
+        "panelTypeString": "TaskDefinition",
+        "path": "Prefabs/UI/TaskDefinitionPanel"
+    },
+
+    {
+        "panelTypeString": "EnemyDefinition",
+        "path": "Prefabs/UI/EnemyDefinitionPanel"
+    },
+
+    {
+        "panelTypeString": " EpuipmentSelection",
+        "path": "Prefabs/UI/EpuipmentSelectionPanel"
+    },
+
+    {
+        "panelTypeString": "ParametersSet_YDYH",
+        "path": "Prefabs/UI/ParametersSet_YDYHPanel"
+    },
+
+    {
+        "panelTypeString": "ParametersSet_SAR",
+        "path": "Prefabs/UI/ParametersSet_SARPanel"
+    }
+]
+}

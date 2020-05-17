@@ -10,6 +10,6 @@ namespace UIFramework
         EnemyDefinition,
         EpuipmentSelection,
         ParametersSet_YDYH,
-        ParametersSet_JY
+        ParametersSet_SAR
     }
 }
