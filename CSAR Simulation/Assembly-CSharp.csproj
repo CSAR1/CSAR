@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Extension\DictionaryExtension.cs" />
     <Compile Include="Assets\Scripts\UI\BasePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Root.cs" />
+    <Compile Include="Assets\Scripts\UI\TaskDefinitionPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanelInfo.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanelType.cs" />
