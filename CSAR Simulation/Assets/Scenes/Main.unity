@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 119145159}
   - component: {fileID: 119145158}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: A-10Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
