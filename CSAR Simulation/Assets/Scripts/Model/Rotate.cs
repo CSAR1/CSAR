@@ -17,6 +17,13 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_Transform.Rotate(Vector3.forward * speed, Space.Self);
+        if (gameObject.name == "A_10" || gameObject.name == "Plane001" || gameObject.name == "Plane002")
+        {
+            m_Transform.Rotate(Vector3.forward * speed, Space.Self);
+        }
+        if (gameObject.name == "MH-53")
+        {
+            m_Transform.Rotate(Vector3.up * speed, Space.Self);
+        }
     }
 }
