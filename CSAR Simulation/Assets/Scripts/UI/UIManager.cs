@@ -107,7 +107,7 @@ namespace UIFramework
                 //string path;
                 //panelPathDict.TryGetValue(panelType, out path);
                 string path = panelPathDict.TryGet(panelType);
-
+                Debug.Log(path);
                 GameObject instPanel = Object.Instantiate(Resources.Load(path)) as GameObject;
                 instPanel.transform.SetParent(CanvasTransform, false); //TODO
                 panelDic.Add(panelType, instPanel.GetComponent<BasePanel>());
@@ -142,7 +142,7 @@ namespace UIFramework
             for (int i = 0; i < 5; i++)
             {
                 panelPathDict.TryGetValue((UIPanelType)i, out path);
-                Debug.Log(path);
+                //Debug.Log(path);
             }
 
         }

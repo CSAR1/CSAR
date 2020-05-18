@@ -3,27 +3,27 @@
 [
     {
         "panelTypeString": "TaskDefinition",
-        "path": "Prefabs/UI/TaskDefinitionPanel"
+        "path": "UI/TaskDefinitionPanel"
     },
 
     {
         "panelTypeString": "EnemyDefinition",
-        "path": "Prefabs/UI/EnemyDefinitionPanel"
+        "path": "UI/EnemyDefinitionPanel"
     },
 
     {
         "panelTypeString": " EpuipmentSelection",
-        "path": "Prefabs/UI/EpuipmentSelectionPanel"
+        "path": "UI/EpuipmentSelectionPanel"
     },
 
     {
         "panelTypeString": "ParametersSet_YDYH",
-        "path": "Prefabs/UI/ParametersSet_YDYHPanel"
+        "path": "UI/ParametersSet_YDYHPanel"
     },
 
     {
         "panelTypeString": "ParametersSet_SAR",
-        "path": "Prefabs/UI/ParametersSet_SARPanel"
+        "path": "UI/ParametersSet_SARPanel"
     }
 ]
 }

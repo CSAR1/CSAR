@@ -65,6 +65,7 @@
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
     <Compile Include="Assets\Scripts\Extension\DictionaryExtension.cs" />
     <Compile Include="Assets\Scripts\UI\BasePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Root.cs" />
     <Compile Include="Assets\Scripts\UI\TaskDefinitionPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
