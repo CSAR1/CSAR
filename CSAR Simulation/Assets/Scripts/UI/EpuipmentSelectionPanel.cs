@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UIFramework;
+using UnityEngine.UI;
 
 public class EpuipmentSelectionPanel : BasePanel
 {
@@ -12,6 +13,11 @@ public class EpuipmentSelectionPanel : BasePanel
     public Texture MH_53;
     public Texture EC_130;
     public Texture AC_130;
+    public Texture MH_60;
+
+    public GameObject YDYH;
+    public GameObject SAR;
+    public GameObject YJ;
 
     // Start is called before the first frame update
     void Start()
@@ -43,5 +49,29 @@ public class EpuipmentSelectionPanel : BasePanel
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
+    }
+
+    public void ChangeYDYHTex(int n)
+    {
+        if (n == 0)
+        {
+            YDYH.GetComponent<RawImage>().texture = A_10;
+        }
+        else if (n == 1)
+        {
+            YDYH.GetComponent<RawImage>().texture = AC_130;
+        }
+    }
+
+    public void ChangeSARTex(int n)
+    {
+        if (n == 0)
+        {
+            SAR.GetComponent<RawImage>().texture = MH_53;
+        }
+        else if (n == 1)
+        {
+            SAR.GetComponent<RawImage>().texture = MH_60;
+        }
     }
 }

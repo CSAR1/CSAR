@@ -21,7 +21,7 @@ public class Rotate : MonoBehaviour
         {
             m_Transform.Rotate(Vector3.forward * speed, Space.Self);
         }
-        if (gameObject.name == "MH-53" || gameObject.name == "AC130")
+        if (gameObject.name == "MH-53" || gameObject.name == "AC130" || gameObject.name == "MH-60")
         {
             m_Transform.Rotate(Vector3.up * speed, Space.Self);
         }
