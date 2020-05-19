@@ -1028,8 +1028,9 @@ GameObject:
   - component: {fileID: 8829694743598584506}
   - component: {fileID: 8829694743598584505}
   - component: {fileID: 6758624891753210100}
+  - component: {fileID: 6617027307776216302}
   m_Layer: 5
-  m_Name: A-10Detail
+  m_Name: A-10DetailPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,6 +1108,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b1843c321be044e8b15ff7b068325a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &6617027307776216302
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829694743598584487}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8829694743745273837
 GameObject:
   m_ObjectHideFlags: 0

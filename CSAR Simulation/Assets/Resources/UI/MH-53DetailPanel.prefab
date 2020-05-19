@@ -1043,8 +1043,9 @@ GameObject:
   - component: {fileID: 660266074019801943}
   - component: {fileID: 660266074019801940}
   - component: {fileID: 9002517570220136785}
+  - component: {fileID: 4905351626936020700}
   m_Layer: 5
-  m_Name: MH-53Detail
+  m_Name: MH-53DetailPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1122,6 +1123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f82f96400a8f7946a24747684340d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &4905351626936020700
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660266074019801930}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &660266074021814529
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,12 +26,12 @@
         },
 
         {
-            "panelTypeString": "A-10Detail",
+            "panelTypeString": "A_10Detail",
             "path": "UI/A-10DetailPanel"
         },
 
         {
-            "panelTypeString": "MH-53Detail",
+            "panelTypeString": "MH_53Detail",
             "path": "UI/MH-53DetailPanel"
         }
     ]
