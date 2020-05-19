@@ -1,29 +1,38 @@
 {
-"infoList":
-[
-    {
-        "panelTypeString": "TaskDefinition",
-        "path": "UI/TaskDefinitionPanel"
-    },
+    "infoList": [
+        {
+            "panelTypeString": "TaskDefinition",
+            "path": "UI/TaskDefinitionPanel"
+        },
 
-    {
-        "panelTypeString": "EnemyDefinition",
-        "path": "UI/EnemyDefinitionPanel"
-    },
+        {
+            "panelTypeString": "EnemyDefinition",
+            "path": "UI/EnemyDefinitionPanel"
+        },
 
-    {
-        "panelTypeString": " EpuipmentSelection",
-        "path": "UI/EpuipmentSelectionPanel"
-    },
+        {
+            "panelTypeString": " EpuipmentSelection",
+            "path": "UI/EpuipmentSelectionPanel"
+        },
 
-    {
-        "panelTypeString": "ParametersSet_YDYH",
-        "path": "UI/ParametersSet_YDYHPanel"
-    },
+        {
+            "panelTypeString": "ParametersSet_YDYH",
+            "path": "UI/ParametersSet_YDYHPanel"
+        },
 
-    {
-        "panelTypeString": "ParametersSet_SAR",
-        "path": "UI/ParametersSet_SARPanel"
-    }
-]
+        {
+            "panelTypeString": "ParametersSet_SAR",
+            "path": "UI/ParametersSet_SARPanel"
+        },
+
+        {
+            "panelTypeString": "A-10Detail",
+            "path": "UI/A-10DetailPanel"
+        },
+
+        {
+            "panelTypeString": "MH-53Detail",
+            "path": "UI/MH-53DetailPanel"
+        }
+    ]
 }
