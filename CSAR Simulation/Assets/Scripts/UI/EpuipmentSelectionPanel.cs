@@ -56,10 +56,12 @@ public class EpuipmentSelectionPanel : BasePanel
         if (n == 0)
         {
             YDYH.GetComponent<RawImage>().texture = A_10;
+            Debug.Log("1111");
         }
         else if (n == 1)
         {
             YDYH.GetComponent<RawImage>().texture = AC_130;
+            Debug.Log("2222");
         }
     }
 
