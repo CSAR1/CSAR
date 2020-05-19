@@ -9,6 +9,9 @@ public class EpuipmentSelectionPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
 
+    public Dropdown YDYHDropdown;
+    public Dropdown SARDropdown;
+
     public Texture A_10;
     public Texture MH_53;
     public Texture EC_130;
@@ -26,6 +29,8 @@ public class EpuipmentSelectionPanel : BasePanel
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
+        YDYHDropdown.onValueChanged.AddListener(ChangeYDYHTex);
+        SARDropdown.onValueChanged.AddListener(ChangeSARTex);
     }
 
     public override void OnEnter()
@@ -56,12 +61,10 @@ public class EpuipmentSelectionPanel : BasePanel
         if (n == 0)
         {
             YDYH.GetComponent<RawImage>().texture = A_10;
-            Debug.Log("1111");
         }
         else if (n == 1)
         {
             YDYH.GetComponent<RawImage>().texture = AC_130;
-            Debug.Log("2222");
         }
     }
 
