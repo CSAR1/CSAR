@@ -31,8 +31,18 @@
         },
 
         {
+            "panelTypeString": "AC_130Detail",
+            "path": "UI/AC-130DetailPanel"
+        },
+
+        {
             "panelTypeString": "MH_53Detail",
             "path": "UI/MH-53DetailPanel"
+        },
+
+        {
+            "panelTypeString": "MH_60Detail",
+            "path": "UI/MH-60DetailPanel"
         }
     ]
 }

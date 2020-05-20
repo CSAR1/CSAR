@@ -12,6 +12,8 @@ namespace UIFramework
         ParametersSet_YDYH,
         ParametersSet_SAR,
         A_10Detail,
-        MH_53Detail
+        AC_130Detail,
+        MH_53Detail,
+        MH_60Detail
     }
 }

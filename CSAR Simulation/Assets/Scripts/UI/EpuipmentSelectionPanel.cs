@@ -91,7 +91,7 @@ public class EpuipmentSelectionPanel : BasePanel
         }
         else if (EquipmentSelection.ydyh == GlobalParameters.YDYH.AC_130)
         {
-            
+            OnPushPanel("AC_130Detail");
         }
     }
 
@@ -117,7 +117,7 @@ public class EpuipmentSelectionPanel : BasePanel
         }
         else if (EquipmentSelection.sar == GlobalParameters.SAR.MH_60)
         {
-
+            OnPushPanel("MH_60Detail");
         }
     }
 }
