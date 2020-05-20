@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
     <Compile Include="Assets\Scripts\Extension\DictionaryExtension.cs" />
+    <Compile Include="Assets\Scripts\Global\GlobalParameters.cs" />
     <Compile Include="Assets\Scripts\Model\Rotate.cs" />
     <Compile Include="Assets\Scripts\UI\A_10DetailPanel.cs" />
     <Compile Include="Assets\Scripts\UI\BasePanel.cs" />
