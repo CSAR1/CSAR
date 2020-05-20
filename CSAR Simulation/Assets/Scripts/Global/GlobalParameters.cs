@@ -53,7 +53,7 @@ namespace GlobalParameters
         public static int weight = 14515; //空重
         public static int fuelWeight = 1000; //燃油重量
         public static SARWeapon sarWeapon = SARWeapon.antiTank; //携带武器
-        public static int num = 1; //武器数量
+        public static int weaponNum = 1; //武器数量
     }
 
     static class AC_130
@@ -82,7 +82,7 @@ namespace GlobalParameters
         public static int weight = 14515; //空重
         public static int fuelWeight = 1000; //燃油重量
         public static SARWeapon sarWeapon = SARWeapon.antiTank; //携带武器
-        public static int num = 1; //武器数量
+        public static int weaponNum = 1; //武器数量
     }
 
     enum YDYH
