@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UIFramework;
 using UnityEngine.UI;
+using GlobalParameters;
 
 public class EpuipmentSelectionPanel : BasePanel
 {
@@ -11,6 +12,9 @@ public class EpuipmentSelectionPanel : BasePanel
 
     public Dropdown YDYHDropdown;
     public Dropdown SARDropdown;
+
+    public Button YDYHButton;
+    public Button SARButton;
 
     public Texture A_10;
     public Texture MH_53;
@@ -31,6 +35,9 @@ public class EpuipmentSelectionPanel : BasePanel
         }
         YDYHDropdown.onValueChanged.AddListener(ChangeYDYHTex);
         SARDropdown.onValueChanged.AddListener(ChangeSARTex);
+
+        YDYHButton.onClick.AddListener(PushYDYHPanel);
+        SARButton.onClick.AddListener(PushSARPanel);
     }
 
     public override void OnEnter()
@@ -51,6 +58,12 @@ public class EpuipmentSelectionPanel : BasePanel
         transform.DOScale(0, .5f).OnComplete(() => canvasGroup.alpha = 0);
     }
 
+    public void OnPushPanel(string panelTypeString)
+    {
+        UIPanelType panelType = (UIPanelType)System.Enum.Parse(typeof(UIPanelType), panelTypeString);
+        UIManager.Instance.PushPanel(panelType);
+    }
+
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
@@ -61,10 +74,24 @@ public class EpuipmentSelectionPanel : BasePanel
         if (n == 0)
         {
             YDYH.GetComponent<RawImage>().texture = A_10;
+            EquipmentSelection.ydyh = GlobalParameters.YDYH.A_10;
         }
         else if (n == 1)
         {
             YDYH.GetComponent<RawImage>().texture = AC_130;
+            EquipmentSelection.ydyh = GlobalParameters.YDYH.AC_130;
+        }
+    }
+
+    public void PushYDYHPanel()
+    {
+        if (EquipmentSelection.ydyh == GlobalParameters.YDYH.A_10)
+        {
+            OnPushPanel("A_10Detail");
+        }
+        else if (EquipmentSelection.ydyh == GlobalParameters.YDYH.AC_130)
+        {
+            
         }
     }
 
@@ -73,10 +100,24 @@ public class EpuipmentSelectionPanel : BasePanel
         if (n == 0)
         {
             SAR.GetComponent<RawImage>().texture = MH_53;
+            EquipmentSelection.sar = GlobalParameters.SAR.MH_53;
         }
         else if (n == 1)
         {
             SAR.GetComponent<RawImage>().texture = MH_60;
+            EquipmentSelection.sar = GlobalParameters.SAR.MH_60;
+        }
+    }
+
+    public void PushSARPanel()
+    {
+        if (EquipmentSelection.sar == GlobalParameters.SAR.MH_53)
+        {
+            OnPushPanel("MH_53Detail");
+        }
+        else if (EquipmentSelection.sar == GlobalParameters.SAR.MH_60)
+        {
+
         }
     }
 }

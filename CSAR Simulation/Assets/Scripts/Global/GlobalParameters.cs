@@ -14,6 +14,12 @@ namespace GlobalParameters
 
     }
 
+    static class EquipmentSelection
+    {
+        public static YDYH ydyh = YDYH.A_10;
+        public static SAR sar = SAR.MH_53;
+    }
+
     static class A_10
     {
 
@@ -32,5 +38,17 @@ namespace GlobalParameters
     static class MH_60
     {
 
+    }
+
+    enum YDYH
+    {
+        A_10,
+        AC_130
+    }
+
+    enum SAR
+    {
+        MH_53,
+        MH_60
     }
 }

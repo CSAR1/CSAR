@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 7819302994330992843}
   - component: {fileID: 7819302994330992840}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,18 +1029,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7819302994330992843}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6755919367870463861}
-        m_MethodName: OnPushPanel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MH_53Detail
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &7819302994418714593
@@ -1174,6 +1163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   YDYHDropdown: {fileID: 7819302995809752437}
   SARDropdown: {fileID: 7819302995212334630}
+  YDYHButton: {fileID: 7819302995067036972}
+  SARButton: {fileID: 7819302994330992840}
   A_10: {fileID: 8400000, guid: e5f5da3b5ea5020488f0701bc6b674c9, type: 2}
   MH_53: {fileID: 8400000, guid: 29f9d24fd8fef804eacc9bc0030542cf, type: 2}
   EC_130: {fileID: 8400000, guid: fc2258303caddd64da30e4b60c50d6d1, type: 2}
@@ -3160,18 +3151,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7819302995067036975}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6755919367870463861}
-        m_MethodName: OnPushPanel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: A_10Detail
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &7819302995114304551
