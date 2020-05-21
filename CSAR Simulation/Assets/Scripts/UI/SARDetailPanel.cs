@@ -4,7 +4,7 @@ using UnityEngine;
 using UIFramework;
 using DG.Tweening;
 
-public class MH_53DetailPanel : BasePanel
+public class SARDetailPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
 
