@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Global\GlobalParameters.cs" />
     <Compile Include="Assets\Scripts\Model\Rotate.cs" />
     <Compile Include="Assets\Scripts\UI\BasePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\CameraMove.cs" />
     <Compile Include="Assets\Scripts\UI\EnemyDefinitionPanel.cs" />
     <Compile Include="Assets\Scripts\UI\EpuipmentSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
