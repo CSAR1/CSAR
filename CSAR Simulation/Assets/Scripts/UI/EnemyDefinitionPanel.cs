@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UIFramework;
+using UnityEngine.UI;
+using GlobalParameters;
+
 public class EnemyDefinitionPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
+
+    public Text enemyNum; //火力点数量
+    public Text missileRange; //对空导弹射程
+    public Text missileMach; //对空导弹马赫数
+    public Text maxOverload; //对空导弹最大过载
+    public Text detectR; //探测范围半径
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +46,50 @@ public class EnemyDefinitionPanel : BasePanel
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
+    }
+
+    public void OnEnemyNumEndEdit(string s)
+    {
+        string content = enemyNum.text;
+        if (int.TryParse(content, out int data))
+        {
+            EnemyDefinition.enemyNum = data;
+        }
+    }
+
+    public void OnMissileRangeEndEdit(string s)
+    {
+        string content = missileRange.text;
+        if (int.TryParse(content, out int data))
+        {
+            EnemyDefinition.missileRange = data;
+        }
+    }
+
+    public void OnMissileMachEndEdit(string s)
+    {
+        string content = missileMach.text;
+        if (int.TryParse(content, out int data))
+        {
+            EnemyDefinition.missileMach = data;
+        }
+    }
+
+    public void OnMaxOverloadEndEdit(string s)
+    {
+        string content = maxOverload.text;
+        if (int.TryParse(content, out int data))
+        {
+            EnemyDefinition.maxOverload = data;
+        }
+    }
+
+    public void OnDetectREndEdit(string s)
+    {
+        string content = detectR.text;
+        if (int.TryParse(content, out int data))
+        {
+            EnemyDefinition.detectR = data;
+        }
     }
 }
