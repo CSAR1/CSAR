@@ -9,6 +9,8 @@ using GlobalParameters;
 public class TaskDefinitionPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
+    private GameObject MainUI;
+    private GameObject QuitReviewButton;
     
     public Text pilotNum; //遇险人数
     public Text lifeLeft; //剩余生命
@@ -23,6 +25,7 @@ public class TaskDefinitionPanel : BasePanel
             canvasGroup = GetComponent<CanvasGroup>();
         }
         hideEnemyCap.onValueChanged.AddListener(OnHideEnemyCapEndEdit);
+        MainUI = GameObject.Find("Main");
     }
 
     public override void OnEnter()
@@ -93,5 +96,12 @@ public class TaskDefinitionPanel : BasePanel
         {
             TaskDefinition.maxSpeed = data;
         }
+    }
+
+    public void OnReviewButtonPressed()
+    {
+        MainUI.SetActive(false);
+        gameObject.SetActive(false);
+        //QuitReviewButton.SetActive(true);
     }
 }

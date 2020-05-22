@@ -346,7 +346,7 @@ MonoBehaviour:
   enemyNum: {fileID: 7101962930805210030}
   missileRange: {fileID: 7101962929487226891}
   missileMach: {fileID: 7101962929260087362}
-  maxOverload: {fileID: 0}
+  maxOverload: {fileID: 7101962930885129698}
   detectR: {fileID: 7101962929783077011}
 --- !u!1 &7101962929414246752
 GameObject:
