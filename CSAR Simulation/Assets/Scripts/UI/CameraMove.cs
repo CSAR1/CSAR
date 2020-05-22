@@ -23,8 +23,8 @@ public class CameraMove : MonoBehaviour {
         sun = GameObject.Find("Sun").GetComponent<Transform>();
         r = Vector3.Distance(m_Transform.position, sun.position); //两个物品间的距离
         angle = 0f;
-        w = 0.15f; // ---角速度
-        speed = 1f;
+        w = 0.2f; // ---角速度
+        speed = 0.25f;
     }
 
     private void Start()
@@ -37,18 +37,18 @@ public class CameraMove : MonoBehaviour {
         m_Transform.LookAt(target.GetComponent<Transform>().position);
         if (Input .GetKey (KeyCode.D))
         {
-            angle -= w * Time.deltaTime;
+            angle += w * Time.deltaTime;
             x = Mathf.Cos(angle) * r;
             z = Mathf.Sin(angle) * r;
-            transform.position = new Vector3(sun.position.x-x, sun.position.y, sun.position.z+z);
+            transform.position = new Vector3(sun.position.x + x, sun.position.y, sun.position.z + z);
         }
 
         if (Input.GetKey (KeyCode .A))
         {
-            angle += w * Time.deltaTime;
+            angle -= w * Time.deltaTime;
             x = Mathf.Cos(angle) * r;
             z = Mathf.Sin(angle) * r;
-            transform.position = new Vector3(sun.position.x - x, sun.position.y, sun.position.z + z);
+            transform.position = new Vector3(sun.position.x + x, sun.position.y, sun.position.z + z);
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -56,7 +56,7 @@ public class CameraMove : MonoBehaviour {
             r -= speed * Time.deltaTime;
             x = Mathf.Cos(angle) * r;
             z = Mathf.Sin(angle) * r;
-            transform.position = new Vector3(sun.position.x - x, sun.position.y, sun.position.z + z);
+            transform.position = new Vector3(sun.position.x + x, sun.position.y, sun.position.z + z);
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -64,7 +64,7 @@ public class CameraMove : MonoBehaviour {
             r += speed * Time.deltaTime;
             x = Mathf.Cos(angle) * r;
             z = Mathf.Sin(angle) * r;
-            transform.position = new Vector3(sun.position.x - x, sun.position.y, sun.position.z + z);
+            transform.position = new Vector3(sun.position.x + x, sun.position.y, sun.position.z + z);
         }
     }
 
