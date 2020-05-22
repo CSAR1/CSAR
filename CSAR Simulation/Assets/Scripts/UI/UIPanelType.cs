@@ -6,6 +6,7 @@ namespace UIFramework
 {
     public enum UIPanelType
     {
+        MainMenu,
         TaskDefinition,
         EnemyDefinition,
         EpuipmentSelection,

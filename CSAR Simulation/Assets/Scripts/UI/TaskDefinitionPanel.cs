@@ -38,7 +38,7 @@ public class TaskDefinitionPanel : BasePanel
             canvasGroup = GetComponent<CanvasGroup>();
         }
         hideEnemyCap.onValueChanged.AddListener(OnHideEnemyCapEndEdit);
-        MainUI = GameObject.Find("Main");
+        MainUI = GameObject.Find("Main(Clone)");
     }
 
     public override void OnEnter()

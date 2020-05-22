@@ -1,6 +1,11 @@
 {
     "infoList": [
         {
+            "panelTypeString": "MainMenu",
+            "path": "UI/Main"
+        },
+
+        {
             "panelTypeString": "TaskDefinition",
             "path": "UI/TaskDefinitionPanel"
         },

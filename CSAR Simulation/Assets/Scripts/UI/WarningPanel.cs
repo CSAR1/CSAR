@@ -47,6 +47,6 @@ public class WarningPanel : BasePanel
     {
         UIManager.Instance.PopPanel();
         runModeButtons.SetActive(false);
-        //mainMenu.SetActive(true);
+        UIManager.Instance.PushPanel(UIPanelType.MainMenu);
     }
 }

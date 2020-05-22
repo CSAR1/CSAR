@@ -22,10 +22,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 713, y: 494}
-  m_MaxSize: {x: 18008, y: 14044}
+  m_MinSize: {x: 711, y: 472}
+  m_MaxSize: {x: 18006, y: 14022}
   vertical: 0
-  controlID: 41307
+  controlID: 44977
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -128,10 +128,10 @@ MonoBehaviour:
     y: 0
     width: 946
     height: 947
-  m_MinSize: {x: 202, y: 444}
-  m_MaxSize: {x: 4002, y: 8044}
+  m_MinSize: {x: 202, y: 422}
+  m_MaxSize: {x: 4002, y: 8022}
   vertical: 1
-  controlID: 41286
+  controlID: 44978
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -303,10 +303,10 @@ MonoBehaviour:
     y: 0
     width: 449
     height: 947
-  m_MinSize: {x: 234, y: 494}
-  m_MaxSize: {x: 10004, y: 14044}
+  m_MinSize: {x: 234, y: 472}
+  m_MaxSize: {x: 10004, y: 14022}
   vertical: 1
-  controlID: 41308
+  controlID: 44922
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -364,7 +364,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b413feff4c1efeff62afffff94afffffc4b0ffff7afbffffbca0000012a1000016a1000062a1000066a1000082a10000a2a10000c6a10000d6a100007aa40000bea40000
+      m_ExpandedIDs: 4660fdff8060fdff9261fdffb413feff4c1efeff62afffff94afffffc4b0ffff7afbffffbca0000012a1000016a1000062a1000066a1000082a10000a2a10000c6a10000d6a100007aa40000bea40000c8290300
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -407,8 +407,8 @@ MonoBehaviour:
     y: 383
     width: 449
     height: 564
-  m_MinSize: {x: 234, y: 272}
-  m_MaxSize: {x: 10004, y: 10022}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -452,19 +452,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Resources/UI
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/UI
+  - Assets/Resources/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Graduate\Graduate Design\GitHub\CSAR\CSAR Simulation
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4e2d0000
-    m_LastClickedID: 11598
+    m_SelectedIDs: 2c2d0000
+    m_LastClickedID: 11564
     m_ExpandedIDs: 000000006a2900008c2900002c2d0000b42d00009c36000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -518,8 +518,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 00000300
-    m_LastClickedInstanceID: 196608
+    m_SelectedInstanceIDs: c8290300
+    m_LastClickedInstanceID: 207304
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:

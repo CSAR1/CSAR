@@ -38,7 +38,7 @@ public class EnemyDefinitionPanel : BasePanel
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
-        MainUI = GameObject.Find("Main");
+        MainUI = GameObject.Find("Main(Clone)");
     }
 
     public override void OnEnter()
