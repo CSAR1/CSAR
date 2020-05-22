@@ -11,6 +11,7 @@ public class EnemyDefinitionPanel : BasePanel
     private CanvasGroup canvasGroup;
     private GameObject MainUI;
     private GameObject QuitReviewButton;
+    private GameObject mainCam;
 
     public Text enemyNum; //火力点数量
     public Text missileRange; //对空导弹射程
@@ -31,6 +32,8 @@ public class EnemyDefinitionPanel : BasePanel
         }
     }
 
+    private Vector3 cameraPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,8 @@ public class EnemyDefinitionPanel : BasePanel
             canvasGroup = GetComponent<CanvasGroup>();
         }
         MainUI = GameObject.Find("Main(Clone)");
+        mainCam = GameObject.Find("Main Camera");
+        cameraPos = mainCam.transform.position;
     }
 
     public override void OnEnter()
@@ -123,6 +128,9 @@ public class EnemyDefinitionPanel : BasePanel
         {
             QuitReviewButton.SetActive(true);
         }
+        mainCam.GetComponent<CameraMove>().enabled = false;
+        mainCam.transform.DOMove(new Vector3(1.08f, 0.15f, 1.03f), 2f);
+        cameraPos = mainCam.transform.position;
     }
 
     public void OnQuitReviewButtonPressed()
@@ -130,5 +138,7 @@ public class EnemyDefinitionPanel : BasePanel
         MainUI.SetActive(true);
         gameObject.SetActive(true);
         QuitReviewButton.SetActive(false);
+        mainCam.transform.DOMove(cameraPos, 2f);
+        mainCam.GetComponent<CameraMove>().enabled = true;
     }
 }

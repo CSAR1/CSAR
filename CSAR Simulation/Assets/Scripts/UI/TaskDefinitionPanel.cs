@@ -11,6 +11,7 @@ public class TaskDefinitionPanel : BasePanel
     private CanvasGroup canvasGroup;
     private GameObject MainUI;
     private GameObject QuitReviewButton;
+    private GameObject mainCam;
     
     public Text pilotNum; //遇险人数
     public Text lifeLeft; //剩余生命
@@ -30,6 +31,8 @@ public class TaskDefinitionPanel : BasePanel
         }
     }
 
+    private Vector3 cameraPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,8 @@ public class TaskDefinitionPanel : BasePanel
         }
         hideEnemyCap.onValueChanged.AddListener(OnHideEnemyCapEndEdit);
         MainUI = GameObject.Find("Main(Clone)");
+        mainCam = GameObject.Find("Main Camera");
+        cameraPos = mainCam.transform.position;
     }
 
     public override void OnEnter()
@@ -125,6 +130,9 @@ public class TaskDefinitionPanel : BasePanel
         {
             QuitReviewButton.SetActive(true);
         }
+        mainCam.GetComponent<CameraMove>().enabled = false;
+        mainCam.transform.DOMove(new Vector3(1.08f, 0.15f, 1.03f), 2f);
+        cameraPos = mainCam.transform.position;
     }
 
     public void OnQuitReviewButtonPressed()
@@ -132,5 +140,7 @@ public class TaskDefinitionPanel : BasePanel
         MainUI.SetActive(true);
         gameObject.SetActive(true);
         QuitReviewButton.SetActive(false);
+        mainCam.transform.DOMove(cameraPos, 2f);
+        mainCam.GetComponent<CameraMove>().enabled = true;
     }
 }
