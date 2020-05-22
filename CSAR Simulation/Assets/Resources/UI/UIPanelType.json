@@ -43,6 +43,11 @@
         {
             "panelTypeString": "MH_60Detail",
             "path": "UI/MH-60DetailPanel"
+        },
+
+        {
+            "panelTypeString": "QuitReviewButton",
+            "path": "UI/QuitReviewButton"
         }
     ]
 }

@@ -14,6 +14,7 @@ namespace UIFramework
         A_10Detail,
         AC_130Detail,
         MH_53Detail,
-        MH_60Detail
+        MH_60Detail,
+        QuitReviewButton
     }
 }

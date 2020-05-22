@@ -17,6 +17,19 @@ public class TaskDefinitionPanel : BasePanel
     public Dropdown hideEnemyCap; //躲避敌方的能力
     public Text maxSpeed; //最大移动速度
 
+    private Transform canvasTransform;
+    private Transform CanvasTransform
+    {
+        get
+        {
+            if (canvasTransform == null)
+            {
+                canvasTransform = GameObject.Find("Canvas").transform;
+            }
+            return canvasTransform;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +115,22 @@ public class TaskDefinitionPanel : BasePanel
     {
         MainUI.SetActive(false);
         gameObject.SetActive(false);
-        //QuitReviewButton.SetActive(true);
+        if (QuitReviewButton == null)
+        {
+            QuitReviewButton = Object.Instantiate(Resources.Load("UI/QuitReviewButton")) as GameObject;
+            QuitReviewButton.transform.SetParent(CanvasTransform, false);
+            QuitReviewButton.GetComponent<Button>().onClick.AddListener(OnQuitReviewButtonPressed);
+        }
+        else
+        {
+            QuitReviewButton.SetActive(true);
+        }
+    }
+
+    public void OnQuitReviewButtonPressed()
+    {
+        MainUI.SetActive(true);
+        gameObject.SetActive(true);
+        QuitReviewButton.SetActive(false);
     }
 }
