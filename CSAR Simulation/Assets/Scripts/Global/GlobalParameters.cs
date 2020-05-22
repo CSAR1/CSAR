@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace GlobalParameters
 {
+    static class SimulationRun
+    {
+        public static RunMode runMode = RunMode.pause;
+    }
+
     static class TaskDefinition
     {
         public static int pilotNum = 1; //遇险人数
@@ -128,5 +133,11 @@ namespace GlobalParameters
         antiTank, //反坦克武器
         gatlin, //加特林机枪
         gun //机枪吊舱
+    }
+
+    enum RunMode
+    {
+        pause,
+        run
     }
 }
