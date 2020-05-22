@@ -9,12 +9,27 @@ using GlobalParameters;
 public class EnemyDefinitionPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
+    private GameObject MainUI;
+    private GameObject QuitReviewButton;
 
     public Text enemyNum; //火力点数量
     public Text missileRange; //对空导弹射程
     public Text missileMach; //对空导弹马赫数
     public Text maxOverload; //对空导弹最大过载
     public Text detectR; //探测范围半径
+
+    private Transform canvasTransform;
+    private Transform CanvasTransform
+    {
+        get
+        {
+            if (canvasTransform == null)
+            {
+                canvasTransform = GameObject.Find("Canvas").transform;
+            }
+            return canvasTransform;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +38,7 @@ public class EnemyDefinitionPanel : BasePanel
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
+        MainUI = GameObject.Find("Main");
     }
 
     public override void OnEnter()
@@ -91,5 +107,28 @@ public class EnemyDefinitionPanel : BasePanel
         {
             EnemyDefinition.detectR = data;
         }
+    }
+
+    public void OnReviewButtonPressed()
+    {
+        MainUI.SetActive(false);
+        gameObject.SetActive(false);
+        if (QuitReviewButton == null)
+        {
+            QuitReviewButton = Object.Instantiate(Resources.Load("UI/QuitReviewButton")) as GameObject;
+            QuitReviewButton.transform.SetParent(CanvasTransform, false);
+            QuitReviewButton.GetComponent<Button>().onClick.AddListener(OnQuitReviewButtonPressed);
+        }
+        else
+        {
+            QuitReviewButton.SetActive(true);
+        }
+    }
+
+    public void OnQuitReviewButtonPressed()
+    {
+        MainUI.SetActive(true);
+        gameObject.SetActive(true);
+        QuitReviewButton.SetActive(false);
     }
 }
