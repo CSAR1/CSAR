@@ -46,8 +46,8 @@
         },
 
         {
-            "panelTypeString": "QuitReviewButton",
-            "path": "UI/QuitReviewButton"
+            "panelTypeString": "Warning",
+            "path": "UI/WarningPanel"
         }
     ]
 }
