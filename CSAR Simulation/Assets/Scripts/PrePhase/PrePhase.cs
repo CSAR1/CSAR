@@ -13,10 +13,11 @@ public class PrePhase : BasePanel
     private HideEnemyCap hideEnemyCap;
     
     private MainMenu mainMenu;
+    private RunPanel runPanel;
 
     void Start()
     {
-        distance = 600f;
+        distance = 650f;
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
         mainMenu.OnStart += InitPrameters;
     }
@@ -101,6 +102,18 @@ public class PrePhase : BasePanel
             {
                 UIManager.Instance.PushInfo("MH-60直升机在奔袭途中被敌方击落，救援失败。");
                 SimulationRun.runMode = RunMode.pause;
+            }
+        }
+        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
+        if (SimulationRun.runMode == RunMode.run)
+        {
+            if (EquipmentSelection.ydyh == YDYH.A_10)
+            {
+                runPanel.ShowInformation(time.ToString().Substring(0, 4) + "小时后，A-10攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
+            }
+            else if (EquipmentSelection.ydyh == YDYH.AC_130)
+            {
+                runPanel.ShowInformation(time + "小时后，AC-130攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
             }
         }
     }

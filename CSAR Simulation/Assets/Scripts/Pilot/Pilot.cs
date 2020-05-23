@@ -20,7 +20,7 @@ public class Pilot : MonoBehaviour
         
         if (SimulationRun.runMode == RunMode.run)
         {
-            life -= 30f;
+            life -= 1f;
             if (life <= 0f)
             {
                 SimulationRun.runMode = RunMode.pause;
@@ -31,6 +31,6 @@ public class Pilot : MonoBehaviour
 
     void InitLifeValue()
     {
-        life = TaskDefinition.lifeLeft * 3600f; //剩余生命（换算成秒）
+        life = (TaskDefinition.lifeLeft - 1f) * 3600f; //剩余生命（换算成秒）
     }
 }

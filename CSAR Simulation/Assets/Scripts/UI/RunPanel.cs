@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UIFramework;
+using UnityEngine.UI;
 
 public class RunPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
-    // Start is called before the first frame update
+    public Text informationText;
+
     void Start()
     {
         if (canvasGroup == null)
@@ -35,6 +37,11 @@ public class RunPanel : BasePanel
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
+    }
+
+    public void ShowInformation(string content)
+    {
+        informationText.text = content;
     }
 
     // Update is called once per frame

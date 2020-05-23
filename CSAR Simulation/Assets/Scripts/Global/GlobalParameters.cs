@@ -63,8 +63,8 @@ namespace GlobalParameters
 
     static class AC_130
     {
-        public static int maxSpeed = 700; //最大巡航速度
-        public static int minSpeed = 500; //最小巡航速度
+        public static int maxSpeed = 600; //最大巡航速度
+        public static int minSpeed = 400; //最小巡航速度
         public static int minR = 8; //最小转弯半径
         public static int containMembers = 1; //载员能力
         public static int fuelWeight = 1800; //燃油重量
