@@ -1,0 +1,50 @@
+# MTL written from /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/PILOT.obj
+newmtl Tex_0004_1_046dds
+Kd 0.588 0.588 0.588
+Ns 2
+d 1
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+map_Kd /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0004_1.jpg
+map_Bump /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0004_1.jpg
+newmtl Tex_0004_7_046dds
+Kd 0.588 0.588 0.588
+Ns 2
+d 0.7
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+map_Kd /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0004_1.jpg
+newmtl Tex_0005_1_046dds
+Kd 0.588 0.588 0.588
+Ns 2
+d 1
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+map_Kd /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0005_1.jpg
+newmtl Tex_0006_1_046dds
+Kd 0.588 0.588 0.588
+Ns 2
+d 1
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+map_Kd /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0006_1.png
+newmtl Tex_0007_1_046dds
+Kd 0.588 0.588 0.588
+Ns 2
+d 1
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+map_Kd /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0020_1.jpg
+newmtl Tex_0008_1_046dds
+Kd 0.588 0.588 0.588
+Ns 2
+d 1
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+map_Kd /Users/man/Desktop/Yusup/Models/BF3/PILOT+CREW/PILOT+CREW/Tex/Tex_0008_1.jpg
