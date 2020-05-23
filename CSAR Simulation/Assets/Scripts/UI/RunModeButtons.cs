@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UIFramework;
+using GlobalParameters;
 
 public class RunModeButtons : MonoBehaviour
 {
@@ -14,5 +15,6 @@ public class RunModeButtons : MonoBehaviour
     public void OnQuitPressed()
     {
         OnPushPanel("Warning");
+        SimulationRun.runMode = RunMode.pause;
     }
 }

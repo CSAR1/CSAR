@@ -119,7 +119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4393627090347517506}
+      - m_Target: {fileID: 1458486186697634510}
         m_MethodName: OnClosePanel
         m_Mode: 1
         m_Arguments:
@@ -143,8 +143,8 @@ GameObject:
   - component: {fileID: 627058772207677625}
   - component: {fileID: 627058772207677607}
   - component: {fileID: 627058772207677606}
+  - component: {fileID: 1458486186697634510}
   - component: {fileID: 9079370599621555378}
-  - component: {fileID: 4393627090347517506}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -212,6 +212,19 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1458486186697634510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627058772207677624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214e4ffd4a9455e47880d849b1cb3438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 592923614752647442}
 --- !u!225 &9079370599621555378
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -224,19 +237,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4393627090347517506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627058772207677624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad80dc09767e7142b5f942b387c301c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 592923614752647442}
 --- !u!1 &2042495667615110108
 GameObject:
   m_ObjectHideFlags: 0
