@@ -48,7 +48,6 @@ artifacts/
 *_p.c
 *_i.h
 *.ilk
-*.meta
 *.pch
 *.pdb
 *.pgc
@@ -283,6 +282,9 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+
+# Never ignore Asset meta data
+!/[Aa]ssets/**/*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
