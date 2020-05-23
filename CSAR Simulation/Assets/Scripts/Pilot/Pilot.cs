@@ -7,25 +7,30 @@ using UIFramework;
 public class Pilot : MonoBehaviour
 {
     public float life;
+    private MainMenu mainMenu;
 
     void Start()
     {
-        life = TaskDefinition.lifeLeft * 3600f; //剩余生命（换算成秒）
-        Debug.Log("?");
+        mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
+        mainMenu.OnStart += InitLifeValue;
     }
 
     void FixedUpdate()
     {
-        Debug.Log(life);
+        
         if (SimulationRun.runMode == RunMode.run)
         {
-            life -= 300f;
-            Debug.Log(life);
+            life -= 30f;
             if (life <= 0f)
             {
                 SimulationRun.runMode = RunMode.pause;
                 UIManager.Instance.PushInfo("待救飞行员已死亡，救援失败。");
             }
         }
+    }
+
+    void InitLifeValue()
+    {
+        life = TaskDefinition.lifeLeft * 3600f; //剩余生命（换算成秒）
     }
 }

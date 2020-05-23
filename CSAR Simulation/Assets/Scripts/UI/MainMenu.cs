@@ -24,6 +24,9 @@ public class MainMenu : BasePanel
         }
     }
 
+    public delegate void OnSimulationStart();
+    public event OnSimulationStart OnStart;
+
     private void Start()
     {
         if (canvasGroup == null)
@@ -64,6 +67,7 @@ public class MainMenu : BasePanel
         //gameObject.SetActive(false);
         OnClosePanel();
         SimulationRun.runMode = RunMode.run;
+        OnStart.Invoke();
         if (RunModeButtons == null)
         {
             RunModeButtons = Object.Instantiate(Resources.Load("UI/RunModeButtons")) as GameObject;
