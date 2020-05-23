@@ -10,6 +10,7 @@ public class PrePhase : MonoBehaviour
     private float speed;
     private float lifeLeft;
     private float time;
+    private HideEnemyCap hideEnemyCap;
     
     private MainMenu mainMenu;
 
@@ -36,11 +37,71 @@ public class PrePhase : MonoBehaviour
             speed = 0.5f * (AC_130.maxSpeed + AC_130.minSpeed);
         }
         lifeLeft = TaskDefinition.lifeLeft;
+        hideEnemyCap = TaskDefinition.hideEnemyCap;
         time = distance / speed;
         if (time >= lifeLeft)
         {
-            UIManager.Instance.PushInfo("救援力量到达现场之前，待救飞行员已死亡，救援失败");
+            UIManager.Instance.PushInfo("救援力量到达现场之前，待救飞行员已死亡，救援失败。");
             SimulationRun.runMode = RunMode.pause;
+        }
+        float captured = Random.Range(0f, 10f);
+        float ydyhDamaged = Random.Range(0f, 10f);
+        float sarDamaged = Random.Range(0f, 10f);
+        switch (hideEnemyCap)
+        {
+            case HideEnemyCap.high:
+                if (captured < 1f)
+                {
+                    UIManager.Instance.PushInfo("救援力量到达现场之前，待救飞行员被敌方间谍发现，救援失败。");
+                    SimulationRun.runMode = RunMode.pause;
+                }
+                break;
+            case HideEnemyCap.medium:
+                if (captured < 2f)
+                {
+                    UIManager.Instance.PushInfo("救援力量到达现场之前，待救飞行员被敌方军犬发现，救援失败。");
+                    SimulationRun.runMode = RunMode.pause;
+                }
+                break;
+            case HideEnemyCap.low:
+                if (captured < 3f)
+                {
+                    UIManager.Instance.PushInfo("救援力量到达现场之前，待救飞行员暴露行踪，被敌方抓获，救援失败。");
+                    SimulationRun.runMode = RunMode.pause;
+                }
+                break;
+        }
+        if (EquipmentSelection.ydyh == YDYH.A_10)
+        {
+            if (ydyhDamaged < 0.5f)
+            {
+                UIManager.Instance.PushInfo("A-10攻击机在奔袭途中被敌方击落，救援失败。");
+                SimulationRun.runMode = RunMode.pause;
+            }
+        }
+        else if (EquipmentSelection.ydyh == YDYH.AC_130)
+        {
+            if (ydyhDamaged < 0.7f)
+            {
+                UIManager.Instance.PushInfo("AC-130攻击机在奔袭途中被敌方击落，救援失败。");
+                SimulationRun.runMode = RunMode.pause;
+            }
+        }
+        if (EquipmentSelection.sar == SAR.MH_53)
+        {
+            if (ydyhDamaged < 0.8f)
+            {
+                UIManager.Instance.PushInfo("MH-53直升机在奔袭途中被敌方击落，救援失败。");
+                SimulationRun.runMode = RunMode.pause;
+            }
+        }
+        else if (EquipmentSelection.sar ==SAR.MH_60)
+        {
+            if (ydyhDamaged < 0.7f)
+            {
+                UIManager.Instance.PushInfo("MH-60直升机在奔袭途中被敌方击落，救援失败。");
+                SimulationRun.runMode = RunMode.pause;
+            }
         }
     }
 }
