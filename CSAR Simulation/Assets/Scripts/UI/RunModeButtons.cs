@@ -11,13 +11,8 @@ public class RunModeButtons : MonoBehaviour
         UIManager.Instance.PushPanel(panelType);
     }
 
-    public void OnTest()
+    public void OnQuitPressed()
     {
         OnPushPanel("Warning");
-    }
-
-    public void OnQuitPressed(string headline, string content)
-    {
-        //OnPushPanel("WarningPanel");
     }
 }

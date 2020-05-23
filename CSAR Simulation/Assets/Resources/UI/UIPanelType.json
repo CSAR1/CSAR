@@ -53,6 +53,11 @@
         {
             "panelTypeString": "Warning",
             "path": "UI/WarningPanel"
+        },
+
+        {
+            "panelTypeString": "Info",
+            "path": "UI/InfoPanel"
         }
     ]
 }

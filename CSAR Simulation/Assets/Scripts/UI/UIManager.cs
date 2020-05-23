@@ -67,6 +67,25 @@ namespace UIFramework
             panelStack.Push(panel);
         }
 
+        public void PushInfo(string content)
+        {
+            if (panelStack == null)
+            {
+                panelStack = new Stack<BasePanel>();
+            }
+
+            //判断栈里是否有页面
+            if (panelStack.Count > 0)
+            {
+                BasePanel topPanel = panelStack.Peek();
+                topPanel.OnPause();
+            }
+            InfoPanel panel = GetPanel(UIPanelType.Info) as InfoPanel;
+            panel.OnEnter();
+            panel.SetContent(content);
+            panelStack.Push(panel);
+        }
+
         /// <summary>
         /// 出栈：从界面移除
         /// </summary>
