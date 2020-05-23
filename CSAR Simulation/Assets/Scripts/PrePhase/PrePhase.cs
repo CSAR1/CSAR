@@ -4,7 +4,7 @@ using UnityEngine;
 using GlobalParameters;
 using UIFramework;
 
-public class PrePhase : MonoBehaviour
+public class PrePhase : BasePanel
 {
     private float distance;
     private float speed;

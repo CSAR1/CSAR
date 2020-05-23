@@ -9,7 +9,7 @@ using DG.Tweening;
 public class MainMenu : BasePanel
 {
     private CanvasGroup canvasGroup;
-    GameObject RunModeButtons;
+    private GameObject RunModeButtons;
 
     private Transform canvasTransform;
     private Transform CanvasTransform
@@ -67,6 +67,7 @@ public class MainMenu : BasePanel
         //gameObject.SetActive(false);
         OnClosePanel();
         SimulationRun.runMode = RunMode.run;
+        OnPushPanel("Run");
         OnStart.Invoke();
         if (RunModeButtons == null)
         {

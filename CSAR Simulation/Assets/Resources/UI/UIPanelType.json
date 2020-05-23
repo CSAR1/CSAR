@@ -58,6 +58,11 @@
         {
             "panelTypeString": "Info",
             "path": "UI/InfoPanel"
+        },
+
+        {
+            "panelTypeString": "Run",
+            "path": "UI/RunPanel"
         }
     ]
 }

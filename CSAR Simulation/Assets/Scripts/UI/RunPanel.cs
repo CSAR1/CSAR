@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UIFramework;
 using DG.Tweening;
-using GlobalParameters;
+using UIFramework;
 
-public class WarningPanel : BasePanel
+public class RunPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
-    private GameObject runModeButtons;
-    private GameObject mainMenu;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +14,6 @@ public class WarningPanel : BasePanel
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
-        runModeButtons = GameObject.Find("RunModeButtons(Clone)");
     }
 
     public override void OnEnter()
@@ -28,28 +23,23 @@ public class WarningPanel : BasePanel
         canvasGroup.blocksRaycasts = true;
 
         transform.localScale = Vector3.zero;
-        transform.DOScale(1, .5f);
+        transform.DOScale(1, 0f);
     }
 
     public override void OnExit()
     {
-        //canvasGroup.alpha = 0;
         canvasGroup.blocksRaycasts = false;
-
-        transform.DOScale(0, .5f).OnComplete(() => canvasGroup.alpha = 0);
+        transform.DOScale(0, 0f).OnComplete(() => canvasGroup.alpha = 0);
     }
 
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
-        SimulationRun.runMode = RunMode.run;
     }
 
-    public void OnQuitConfirm()
+    // Update is called once per frame
+    void Update()
     {
-        UIManager.Instance.PopPanel();
-        UIManager.Instance.PopPanel();
-        runModeButtons.SetActive(false);
-        UIManager.Instance.PushPanel(UIPanelType.MainMenu);
+        
     }
 }

@@ -85,6 +85,8 @@ GameObject:
   - component: {fileID: 8683212486850159725}
   - component: {fileID: 8683212486850159715}
   - component: {fileID: 8683212486850159714}
+  - component: {fileID: -3186583194495338798}
+  - component: {fileID: -7895571340470235786}
   m_Layer: 5
   m_Name: RunPanel
   m_TagString: Untagged
@@ -135,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -150,6 +152,30 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &-3186583194495338798
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683212486850159724}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &-7895571340470235786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683212486850159724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0886e5fab978c449101d6f18a4ff38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8683212487025507049
 GameObject:
   m_ObjectHideFlags: 0
