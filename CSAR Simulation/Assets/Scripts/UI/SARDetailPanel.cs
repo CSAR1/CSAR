@@ -33,7 +33,7 @@ public class SARDetailPanel : BasePanel
         canvasGroup.blocksRaycasts = true;
 
         transform.localScale = Vector3.zero;
-        transform.DOScale(1, .5f);
+        transform.DOScale(0.8f, .5f);
     }
 
     public override void OnExit()
