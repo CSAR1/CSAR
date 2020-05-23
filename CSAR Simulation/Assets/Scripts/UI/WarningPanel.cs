@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UIFramework;
 using DG.Tweening;
+using GlobalParameters;
 
 public class WarningPanel : BasePanel
 {
@@ -41,6 +42,7 @@ public class WarningPanel : BasePanel
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
+        SimulationRun.runMode = RunMode.run;
     }
 
     public void OnQuitConfirm()
