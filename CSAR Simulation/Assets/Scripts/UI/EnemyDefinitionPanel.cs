@@ -33,6 +33,7 @@ public class EnemyDefinitionPanel : BasePanel
     }
 
     private Vector3 cameraPos;
+    private Vector3 cameraRot;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class EnemyDefinitionPanel : BasePanel
         MainUI = GameObject.Find("Main(Clone)");
         mainCam = GameObject.Find("Main Camera");
         cameraPos = mainCam.transform.position;
+        cameraRot = mainCam.transform.eulerAngles;
     }
 
     public override void OnEnter()
@@ -129,8 +131,10 @@ public class EnemyDefinitionPanel : BasePanel
             QuitReviewButton.SetActive(true);
         }
         mainCam.GetComponent<CameraMove>().enabled = false;
-        mainCam.transform.DOMove(new Vector3(1.08f, 0.15f, 1.03f), 2f);
         cameraPos = mainCam.transform.position;
+        cameraRot = mainCam.transform.eulerAngles;
+        mainCam.transform.DOMove(new Vector3(0.57f, 0.13f, 0.36f), 2f);
+        mainCam.transform.DORotate(new Vector3(21f, -78f, 0f), 2f);
     }
 
     public void OnQuitReviewButtonPressed()
@@ -139,6 +143,7 @@ public class EnemyDefinitionPanel : BasePanel
         gameObject.SetActive(true);
         QuitReviewButton.SetActive(false);
         mainCam.transform.DOMove(cameraPos, 2f);
+        mainCam.transform.DORotate(cameraRot, 2f);
         mainCam.GetComponent<CameraMove>().enabled = true;
     }
 }
