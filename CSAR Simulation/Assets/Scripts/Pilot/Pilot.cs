@@ -32,10 +32,13 @@ public class Pilot : MonoBehaviour
                 SimulationRun.runMode = RunMode.pause;
                 UIManager.Instance.PushInfo("待救飞行员已死亡，救援失败。");
             }
-            detected = Random.Range(0f, 10f);
-            if (detected < 0.005f)
+            if (timePassed > 1.8f)
             {
-                runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：待救飞行员已被敌方探测到，敌方正在驱车前往。");
+                detected = Random.Range(0f, 10f);
+                if (detected < 0.007f)
+                {
+                    runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：待救飞行员已被敌方探测到，敌方正在驱车前往。");
+                }
             }
         }
     }
