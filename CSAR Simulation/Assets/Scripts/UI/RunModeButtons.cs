@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class RunModeButtons : MonoBehaviour
 {
     public Text pauseText;
+    private bool switchOn = true;
 
     public void OnPushPanel(string panelTypeString)
     {
@@ -23,15 +24,16 @@ public class RunModeButtons : MonoBehaviour
 
     public void OnPausePressed()
     {
-        if (SimulationRun.runMode == RunMode.run)
+        if (switchOn)
         {
-            SimulationRun.runMode = RunMode.pause;
             pauseText.text = "继续仿真";
+            SimulationRun.runMode = RunMode.pause;
         }
-        if (SimulationRun.runMode == RunMode.pause)
+        if (!switchOn)
         {
-            SimulationRun.runMode = RunMode.run;
             pauseText.text = "暂停仿真";
+            SimulationRun.runMode = RunMode.run;
         }
+        switchOn = !switchOn;
     }
 }
