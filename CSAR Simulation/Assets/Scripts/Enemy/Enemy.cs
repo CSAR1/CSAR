@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GlobalParameters;
+using UIFramework;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    EnemyGenerate enemyParent;
+
     void Start()
     {
-        
+        enemyParent = gameObject.GetComponentInParent<EnemyGenerate>();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
-        
+        if (SimulationRun.runMode == RunMode.run)
+        {
+
+        }
     }
 }
