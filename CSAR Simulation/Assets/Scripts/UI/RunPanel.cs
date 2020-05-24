@@ -44,6 +44,12 @@ public class RunPanel : BasePanel
         informationText.text = content;
     }
 
+    public void AddInformation(string content)
+    {
+        informationText.text += "\n";
+        informationText.text += content;
+    }
+
     // Update is called once per frame
     void Update()
     {
