@@ -9,6 +9,8 @@ public class RunPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
     public Text informationText;
+    public GameObject content;
+    List<GameObject> panelList = new List<GameObject>();
 
     void Start()
     {
@@ -16,6 +18,11 @@ public class RunPanel : BasePanel
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
+        /*
+        GameObject panel = GameObject.Instantiate(Resources.Load<GameObject>("UI/GridPanel"));
+        panel.transform.SetParent(this.content.transform);
+        panel.GetComponentInChildren<Text>().text = "暂无状态更新。";
+        panelList.Add(panel);*/
     }
 
     public override void OnEnter()
@@ -41,13 +48,24 @@ public class RunPanel : BasePanel
 
     public void ShowInformation(string content)
     {
-        informationText.text = content;
+        foreach (GameObject thePanel in panelList)
+        {
+            Destroy(thePanel);
+        }
+        panelList.Clear();
+        GameObject panel = GameObject.Instantiate(Resources.Load<GameObject>("UI/GridPanel"));
+        panel.transform.SetParent(this.content.transform);
+        panel.GetComponentInChildren<Text>().text = content;
+        panel.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+        panelList.Add(panel);
     }
 
     public void AddInformation(string content)
     {
-        informationText.text += "\n";
-        informationText.text += content;
+        GameObject panel = GameObject.Instantiate(Resources.Load<GameObject>("UI/GridPanel"));
+        panel.transform.SetParent(this.content.transform);
+        panel.GetComponentInChildren<Text>().text = content;
+        panelList.Add(panel);
     }
 
     // Update is called once per frame
