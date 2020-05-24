@@ -23,12 +23,12 @@ public class RunModeButtons : MonoBehaviour
 
     public void OnPausePressed()
     {
-        if (pauseText.text == "暂停仿真")
+        if (SimulationRun.runMode == RunMode.run)
         {
             SimulationRun.runMode = RunMode.pause;
             pauseText.text = "继续仿真";
         }
-        if (pauseText.text == "继续仿真")
+        if (SimulationRun.runMode == RunMode.pause)
         {
             SimulationRun.runMode = RunMode.run;
             pauseText.text = "暂停仿真";

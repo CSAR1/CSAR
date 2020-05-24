@@ -38,6 +38,21 @@ public class Pilot : MonoBehaviour
                 if (detected < 0.007f)
                 {
                     runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：待救飞行员已被敌方探测到，敌方正在驱车前往。");
+                    switch (SimulationRun.pilotDetectedMode)
+                    {
+                        case PilotDetectedMode.notFound:
+                            SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByEnemy;
+                            break;
+                        case PilotDetectedMode.foundByEnemy:
+                            SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByEnemy;
+                            break;
+                        case PilotDetectedMode.foundBySARTeam:
+                            SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByBoth;
+                            break;
+                        case PilotDetectedMode.foundByBoth:
+                            SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByBoth;
+                            break;
+                    }
                 }
             }
         }

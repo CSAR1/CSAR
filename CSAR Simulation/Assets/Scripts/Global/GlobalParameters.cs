@@ -7,6 +7,7 @@ namespace GlobalParameters
     static class SimulationRun
     {
         public static RunMode runMode = RunMode.pause;
+        public static PilotDetectedMode pilotDetectedMode = PilotDetectedMode.notFound;
     }
 
     static class TaskDefinition
@@ -139,5 +140,12 @@ namespace GlobalParameters
     {
         pause,
         run
+    }
+    enum PilotDetectedMode
+    {
+        notFound,
+        foundByEnemy,
+        foundBySARTeam,
+        foundByBoth
     }
 }
