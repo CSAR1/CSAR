@@ -10,6 +10,7 @@ public class MainMenu : BasePanel
 {
     private CanvasGroup canvasGroup;
     private GameObject RunModeButtons;
+    private RunPanel runPanel;
 
     private Transform canvasTransform;
     private Transform CanvasTransform
@@ -68,6 +69,8 @@ public class MainMenu : BasePanel
         OnClosePanel();
         SimulationRun.runMode = RunMode.run;
         OnPushPanel("Run");
+        runPanel = GameObject.Find("RunPanel(Clone)").GetComponent<RunPanel>();
+        runPanel.ShowInformation("暂无状态更新。");
         OnStart.Invoke();
         if (RunModeButtons == null)
         {
