@@ -11,12 +11,16 @@ public class EnemyGenerate : MonoBehaviour
     public int missileMach;
     public int maxOverload;
     public int detectR;
+
     private MainMenu mainMenu;
 
     void Start()
     {
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
         mainMenu.OnStart += InitValue;
+        GameObject.Instantiate(Resources.Load<GameObject>("Enemies/Military Truck Variant"), new Vector3(0.41f, 0.062f, 0.39f), Quaternion.Euler(0f, 92f, 0f), transform);
+        GameObject.Instantiate(Resources.Load<GameObject>("Enemies/Military Truck Variant"), new Vector3(0.515f, 0.07f, 0.385f), Quaternion.Euler(0f, 92f, 0f), transform);
+        GameObject.Instantiate(Resources.Load<GameObject>("Enemies/Military Truck Variant"), new Vector3(0.316f, 0.095f, 0.456f), Quaternion.Euler(0f, 92f, 0f), transform);
     }
     
     void FIxedUpdate()

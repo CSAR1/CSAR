@@ -65,6 +65,7 @@ public class RunPanel : BasePanel
         GameObject panel = GameObject.Instantiate(Resources.Load<GameObject>("UI/GridPanel"));
         panel.transform.SetParent(this.content.transform);
         panel.GetComponentInChildren<Text>().text = content;
+        panel.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
         panelList.Add(panel);
     }
 
