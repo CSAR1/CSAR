@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GlobalParameters;
 
 public class Rotate : MonoBehaviour
 {
@@ -15,15 +16,18 @@ public class Rotate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (gameObject.name == "A_10" || gameObject.name == "Plane001" || gameObject.name == "Plane002")
+        if (SimulationRun.runMode == RunMode.run)
         {
-            m_Transform.Rotate(Vector3.forward * speed, Space.Self);
-        }
-        if (gameObject.name == "MH-53" || gameObject.name == "AC130" || gameObject.name == "MH-60")
-        {
-            m_Transform.Rotate(Vector3.up * speed, Space.Self);
+            if (gameObject.name == "A_10" || gameObject.name == "Plane001" || gameObject.name == "Plane002")
+            {
+                m_Transform.Rotate(Vector3.forward * speed, Space.Self);
+            }
+            if (gameObject.name == "MH-53" || gameObject.name == "AC130" || gameObject.name == "MH-60")
+            {
+                m_Transform.Rotate(Vector3.up * speed, Space.Self);
+            }
         }
     }
 }
