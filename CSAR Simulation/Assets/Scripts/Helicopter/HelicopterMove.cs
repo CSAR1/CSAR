@@ -12,14 +12,15 @@ public class HelicopterMove : MonoBehaviour
 
     private Vector3 StartPosition;
 
-    private bool Hover = true;
-    private bool Go = false;
-    private bool Down = false;
-    private bool Up = false;
-    private bool Back = false;
+    public bool Hover = true;
+    public bool Go = false;
+    public bool Down = false;
+    public bool Up = false;
+    public  bool Back = false;
 
-    private void Awake()
+    void Awake()
     {
+        pilot = GameObject .Find("Pilot");
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
     }
@@ -27,8 +28,9 @@ public class HelicopterMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pilot = this.gameObject.transform.parent.Find("Pilot").gameObject ;
-        StartPosition = new Vector3(1.5f, 0, 0);
+
+        StartPosition = new Vector3(2f, 0.7f, 0.5f);
+        this.transform.position = StartPosition;
 
     }
 
@@ -37,6 +39,41 @@ public class HelicopterMove : MonoBehaviour
     {
         if (SimulationRun.runMode == RunMode.run)
         {
+            if (Hover)
+            {
+                HelicopterHover();
+                Hover = false;
+                Go = true;
+            }
+
+            if (Go)
+            {
+                HelicopterGo();
+                Go = false;
+                Down = true;
+            }
+
+            if (Down)
+            {
+                HelicopterDown();
+                Down = false;
+                Up = true;
+            }
+
+            if (Up)
+            {
+                HelicopterUp();
+                Up = false;
+                Back = true;
+             
+            }
+
+            if(Back)
+            {
+                HelicopterBack();
+                Back = false;
+            }
+            
 
         }
     }
@@ -45,27 +82,30 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterHover()
     {
+        runPanel.ShowInformation("直升机盘旋");
+        Debug.Log("1");
 
     }
 
     void HelicopterGo()
     {
-
+        runPanel.ShowInformation("直升机出发");
+        Debug.Log("2");
     }
 
     void HelicopterDown()
     {
-
+        runPanel.ShowInformation("直升机下降");
     }
 
 
     void HelicopterUp()
     {
-
+        runPanel.ShowInformation("直升机上升");
     }
 
     void HelicopterBack()
     {
-
+        runPanel.ShowInformation("直升机返回");
     }
 }
