@@ -146,6 +146,7 @@ namespace GlobalParameters
         notFound,
         foundByEnemy,
         foundBySARTeam,
-        foundByBoth
+        foundByBoth,
+        recovered,
     }
 }
