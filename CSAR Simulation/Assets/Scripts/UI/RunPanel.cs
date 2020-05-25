@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class RunPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
-    public Text informationText;
+    public Text timeText;
+    public Text lifeText;
+
     public GameObject content;
+    private Pilot pilot;
     List<GameObject> panelList = new List<GameObject>();
 
     void Start()
@@ -23,6 +26,13 @@ public class RunPanel : BasePanel
         panel.transform.SetParent(this.content.transform);
         panel.GetComponentInChildren<Text>().text = "暂无状态更新。";
         panelList.Add(panel);*/
+        pilot = GameObject.Find("Pilot").GetComponent<Pilot>();
+    }
+
+    private void FixedUpdate()
+    {
+        timeText.text = "距搜救出动已过去：" + pilot.timePassed.ToString("0.00") + "小时";
+        lifeText.text = "待救目标剩余生命：" + (pilot.lifeLeft / pilot.life * 100f).ToString("0.00") + "%";
     }
 
     public override void OnEnter()

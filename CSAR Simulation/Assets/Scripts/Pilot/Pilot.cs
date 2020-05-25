@@ -6,6 +6,8 @@ using UIFramework;
 
 public class Pilot : MonoBehaviour
 {
+    public float lifeLeft;
+
     public float life;
     public float timePassed;
     public float maxSpeed;
@@ -24,9 +26,9 @@ public class Pilot : MonoBehaviour
         if (SimulationRun.runMode == RunMode.run)
         {
             gameObject.transform.position += new Vector3(0f, 0f, 0.4f / 50000f * 2f);
-            life -= 0.8f;
+            lifeLeft -= 0.8f;
             timePassed += 0.8f / 3600f;
-            if (life <= 0f)
+            if (lifeLeft <= 0f)
             {
                 SimulationRun.runMode = RunMode.pause;
                 UIManager.Instance.PushInfo("待救飞行员已死亡，救援失败。");
@@ -37,7 +39,8 @@ public class Pilot : MonoBehaviour
     void InitValue()
     {
         transform.position = new Vector3(1f, 0.073f, 1f);
-        life = (TaskDefinition.lifeLeft - 1f) * 3600f; //剩余生命（换算成秒）
+        life = TaskDefinition.lifeLeft  * 3600f; //生命（换算成秒）
+        lifeLeft = life - 4680f; //剩余生命
         maxSpeed = TaskDefinition.maxSpeed; //最大移动速度
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
         timePassed = 1.3f;
