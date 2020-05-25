@@ -85,4 +85,13 @@ public class Enemy : MonoBehaviour
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
         timePassed = 1.3f;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Pilot")
+        {
+            SimulationRun.runMode = RunMode.pause;
+            UIManager.Instance.PushInfo("待救飞行员被敌方抓获，救援失败。");
+        }
+    }
 }
