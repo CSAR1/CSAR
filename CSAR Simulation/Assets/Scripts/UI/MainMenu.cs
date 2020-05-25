@@ -44,12 +44,14 @@ public class MainMenu : BasePanel
 
         transform.localScale = Vector3.zero;
         transform.DOScale(1, 0f);
+        SimulationRun.inputPhase = true;
     }
 
     public override void OnExit()
     {
         canvasGroup.blocksRaycasts = false;
         transform.DOScale(0, 0f).OnComplete(() => canvasGroup.alpha = 0);
+        SimulationRun.inputPhase = false;
     }
 
     public void OnPushPanel(string panelTypeString)

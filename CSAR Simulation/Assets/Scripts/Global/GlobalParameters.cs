@@ -8,6 +8,7 @@ namespace GlobalParameters
     {
         public static RunMode runMode = RunMode.pause;
         public static PilotDetectedMode pilotDetectedMode = PilotDetectedMode.notFound;
+        public static bool inputPhase = true;
     }
 
     static class TaskDefinition

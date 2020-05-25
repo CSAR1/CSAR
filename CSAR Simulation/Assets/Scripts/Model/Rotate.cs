@@ -18,7 +18,7 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (SimulationRun.runMode == RunMode.run)
+        if (SimulationRun.runMode == RunMode.run || SimulationRun.inputPhase == true)
         {
             if (gameObject.name == "A_10" || gameObject.name == "Plane001" || gameObject.name == "Plane002")
             {
