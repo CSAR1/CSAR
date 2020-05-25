@@ -36,6 +36,7 @@ public class Pilot : MonoBehaviour
 
     void InitValue()
     {
+        transform.position = new Vector3(1f, 0.073f, 1f);
         life = (TaskDefinition.lifeLeft - 1f) * 3600f; //剩余生命（换算成秒）
         maxSpeed = TaskDefinition.maxSpeed; //最大移动速度
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
