@@ -9,6 +9,7 @@ public class EvaluationPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
     private GameObject runModeButtons;
+    public GameObject[] Buttons = new GameObject[5];
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class EvaluationPanel : BasePanel
 
         transform.localScale = Vector3.zero;
         transform.DOScale(0.8f, .5f);
+        OnActionSelected();
     }
 
     public override void OnExit()
@@ -39,5 +41,60 @@ public class EvaluationPanel : BasePanel
         UIManager.Instance.PopPanel();
         runModeButtons.SetActive(false);
         UIManager.Instance.PushPanel(UIPanelType.MainMenu);
+    }
+
+    public void OnActionSelected()
+    {
+        for (int i = 0; i < Buttons.Length; i++)
+        {
+            Buttons[i].GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 148f / 255f);
+            Buttons[i].GetComponentInChildren<Text>().color = new Color(34f / 255f, 34f / 255f, 34f / 255f, 255f / 255f);
+        }
+        Buttons[0].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
+        Buttons[0].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+    }
+
+    public void OnTimeSelected()
+    {
+        for (int i = 0; i < Buttons.Length; i++)
+        {
+            Buttons[i].GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 148f / 255f);
+            Buttons[i].GetComponentInChildren<Text>().color = new Color(34f / 255f, 34f / 255f, 34f / 255f, 255f / 255f);
+        }
+        Buttons[1].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
+        Buttons[1].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+    }
+
+    public void OnLossSelected()
+    {
+        for (int i = 0; i < Buttons.Length; i++)
+        {
+            Buttons[i].GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 148f / 255f);
+            Buttons[i].GetComponentInChildren<Text>().color = new Color(34f / 255f, 34f / 255f, 34f / 255f, 255f / 255f);
+        }
+        Buttons[2].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
+        Buttons[2].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+    }
+
+    public void OnAttackSelected()
+    {
+        for (int i = 0; i < Buttons.Length; i++)
+        {
+            Buttons[i].GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 148f / 255f);
+            Buttons[i].GetComponentInChildren<Text>().color = new Color(34f / 255f, 34f / 255f, 34f / 255f, 255f / 255f);
+        }
+        Buttons[3].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
+        Buttons[3].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+    }
+
+    public void OnFuelSelected()
+    {
+        for (int i = 0; i < Buttons.Length; i++)
+        {
+            Buttons[i].GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 148f / 255f);
+            Buttons[i].GetComponentInChildren<Text>().color = new Color(34f / 255f, 34f / 255f, 34f / 255f, 255f / 255f);
+        }
+        Buttons[4].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
+        Buttons[4].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
     }
 }
