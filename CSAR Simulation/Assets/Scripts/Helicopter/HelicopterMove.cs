@@ -22,16 +22,14 @@ public class HelicopterMove : MonoBehaviour
     {
         pilot = GameObject .Find("Pilot");
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
-        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         StartPosition = new Vector3(2f, 0.7f, 0.5f);
         this.transform.position = StartPosition;
-
+        mainMenu.OnStart += OnStart;
     }
 
     // Update is called once per frame
@@ -82,30 +80,35 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterHover()
     {
-        runPanel.ShowInformation("直升机盘旋");
+        runPanel.AddInformation("直升机盘旋");
         Debug.Log("1");
 
     }
 
     void HelicopterGo()
     {
-        runPanel.ShowInformation("直升机出发");
+        runPanel.AddInformation("直升机出发");
         Debug.Log("2");
     }
 
     void HelicopterDown()
     {
-        runPanel.ShowInformation("直升机下降");
+        runPanel.AddInformation("直升机下降");
     }
 
 
     void HelicopterUp()
     {
-        runPanel.ShowInformation("直升机上升");
+        runPanel.AddInformation("直升机上升");
     }
 
     void HelicopterBack()
     {
-        runPanel.ShowInformation("直升机返回");
+        runPanel.AddInformation("直升机返回");
+    }
+
+    private void OnStart()
+    {
+        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
     }
 }
