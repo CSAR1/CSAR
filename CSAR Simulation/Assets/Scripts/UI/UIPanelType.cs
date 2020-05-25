@@ -18,6 +18,7 @@ namespace UIFramework
         MH_60Detail,
         Warning,
         Info,
-        Run
+        Run,
+        Evaluation
     }
 }

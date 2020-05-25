@@ -2,24 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UIFramework;
-using DG.Tweening;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class InfoPanel : BasePanel
+public class EvaluationPanel : BasePanel
 {
     private CanvasGroup canvasGroup;
     private GameObject runModeButtons;
-    private GameObject mainMenu;
 
-    public Text content;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (canvasGroup == null)
-        {
-            canvasGroup = GetComponent<CanvasGroup>();
-        }
         runModeButtons = GameObject.Find("RunModeButtons(Clone)");
     }
 
@@ -30,12 +22,7 @@ public class InfoPanel : BasePanel
         canvasGroup.blocksRaycasts = true;
 
         transform.localScale = Vector3.zero;
-        transform.DOScale(1, .5f);
-    }
-
-    public void SetContent(string content)
-    {
-        this.content.text = content;
+        transform.DOScale(0.8f, .5f);
     }
 
     public override void OnExit()
@@ -44,16 +31,11 @@ public class InfoPanel : BasePanel
         canvasGroup.blocksRaycasts = false;
 
         transform.DOScale(0, .5f).OnComplete(() => canvasGroup.alpha = 0);
-        UIManager.Instance.PushPanel(UIPanelType.Evaluation);
     }
 
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
-    }
-
-    public void OnQuitConfirm()
-    {
         UIManager.Instance.PopPanel();
         runModeButtons.SetActive(false);
         UIManager.Instance.PushPanel(UIPanelType.MainMenu);
