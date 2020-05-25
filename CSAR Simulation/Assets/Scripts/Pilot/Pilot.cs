@@ -40,5 +40,6 @@ public class Pilot : MonoBehaviour
         maxSpeed = TaskDefinition.maxSpeed; //最大移动速度
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
         timePassed = 1.3f;
+        SimulationRun.pilotDetectedMode = PilotDetectedMode.notFound;
     }
 }
