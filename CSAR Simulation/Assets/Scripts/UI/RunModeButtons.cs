@@ -10,6 +10,14 @@ public class RunModeButtons : MonoBehaviour
     public Text pauseText;
     private bool switchOn = true;
 
+    private MainMenu mainMenu;
+
+    private void Start()
+    {
+        mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
+        mainMenu.OnStart += OnStart;
+    }
+
     public void OnPushPanel(string panelTypeString)
     {
         UIPanelType panelType = (UIPanelType)System.Enum.Parse(typeof(UIPanelType), panelTypeString);
@@ -35,5 +43,11 @@ public class RunModeButtons : MonoBehaviour
             SimulationRun.runMode = RunMode.run;
         }
         switchOn = !switchOn;
+    }
+
+    private void OnStart()
+    {
+        pauseText.text = "暂停仿真";
+        switchOn = true;
     }
 }
