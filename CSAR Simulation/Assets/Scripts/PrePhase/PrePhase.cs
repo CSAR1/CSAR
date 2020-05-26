@@ -77,6 +77,11 @@ public class PrePhase : BasePanel
             if (ydyhDamaged < 0.5f)
             {
                 UIManager.Instance.PushInfo("A-10攻击机在奔袭途中被敌方击落，救援失败。");
+                ScoreValue.lossScore -= 15f;
+                LossResult.aircraftLoss += 1;
+                LossResult.aircraftLossRate = 1f / 3f * 100;
+                LossResult.peopleLoss += 1;
+                //LossResult.peopleLossRate=1f/
                 SimulationRun.runMode = RunMode.pause;
             }
         }
@@ -85,6 +90,11 @@ public class PrePhase : BasePanel
             if (ydyhDamaged < 0.7f)
             {
                 UIManager.Instance.PushInfo("AC-130攻击机在奔袭途中被敌方击落，救援失败。");
+                ScoreValue.lossScore -= 15f;
+                LossResult.aircraftLoss += 1;
+                LossResult.aircraftLossRate = 1f / 3f;
+                LossResult.peopleLoss += 1;
+                //LossResult.peopleLossRate =1f/
                 SimulationRun.runMode = RunMode.pause;
             }
         }

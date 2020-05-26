@@ -137,7 +137,7 @@ namespace GlobalParameters
         public static float lossScore = 100f;
         public static float attackScore = 0f;
         public static float fuelScore = 100f;
-        public static float overallScore = 0.5f * actionScore + 0.2f * lossScore + 0.2f * attackScore + 0.1f * fuelScore;
+        public static float overallScore = 30f;
     }
 
     enum YDYH

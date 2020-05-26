@@ -121,5 +121,6 @@ public class MainMenu : BasePanel
         ScoreValue.lossScore = 100f;
         ScoreValue.attackScore = 0f;
         ScoreValue.fuelScore = 100f;
-}
+        ScoreValue.overallScore = 30f;
+    }
 }

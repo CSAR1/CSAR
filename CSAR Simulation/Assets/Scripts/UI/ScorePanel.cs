@@ -59,7 +59,7 @@ public class ScorePanel : BasePanel
 
     public void CalculateScore()
     {
-
+        ScoreValue.overallScore = 0.5f * ScoreValue.actionScore + 0.2f * ScoreValue.lossScore + 0.2f * ScoreValue.attackScore + 0.1f * ScoreValue.fuelScore;
     }
 
     public void SetScore()
