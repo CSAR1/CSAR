@@ -14,8 +14,11 @@ public class HelicopterMove : MonoBehaviour
     private Vector3 GoDirection;
     private Vector3 Jidi_Position;
 
-    public float TimePass_1=0;
-    public float speed = 1f;
+    private int i = 0;
+    public float timePassed_1=0;
+    private float timePassed=0;
+    public float speed ;
+    private float step;
     private float Height=0.7f;
 
     public bool Hover = true;
@@ -35,6 +38,9 @@ public class HelicopterMove : MonoBehaviour
     {
         StartPosition = new Vector3(2f, Height , 0.5f);
         Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
+
+        speed = GlobalParameters.MH_53.speed;
+        step = speed * 0.8f / 3600f*0.5f;
         mainMenu.OnStart += OnStart;
     }
 
@@ -43,12 +49,13 @@ public class HelicopterMove : MonoBehaviour
     {
         if (SimulationRun.runMode == RunMode.run)
         {
-            TimePass_1 += Time.fixedDeltaTime;
+            timePassed += 0.8f / 3600f;
+            timePassed_1 += Time.fixedDeltaTime;
             if (Hover)
             {
                 HelicopterHover();
 
-                if (TimePass_1 > 2)
+                if (timePassed_1 > 2)
                 {
                     Hover = false;
                     Go = true;
@@ -112,8 +119,13 @@ public class HelicopterMove : MonoBehaviour
     void HelicopterHover()
     {
         this.transform.position = StartPosition;
-        runPanel.AddInformation("直升机盘旋");
-        Debug.Log("1");
+        if (i == 0)
+        {
+            runPanel.AddInformation("直升机盘旋");
+            i = 1;
+        }
+
+
 
     }
 
@@ -121,29 +133,53 @@ public class HelicopterMove : MonoBehaviour
     {
 
         this.transform.LookAt(new Vector3(Pilot.transform.position.x, Height, Pilot.transform .position.z));
-        this.transform.Translate(GoDirection.normalized * speed * Time.fixedDeltaTime, Space.World);
-        runPanel.AddInformation("直升机出发");
-        Debug.Log("2");
+        this.transform.Translate(GoDirection.normalized * step , Space.World);
+        if (i == 1)
+        {
+            runPanel.AddInformation(timePassed.ToString() + "小时后：直升机出发");
+            i = 2;
+        }
+
+
     }
 
     void HelicopterDown()
     {
-        this.transform.Translate(new Vector3 (0,-0.1f,0) * speed * Time.fixedDeltaTime, Space.World);
-        runPanel.AddInformation("直升机下降");
+        this.transform.Translate(new Vector3 (0,-0.1f,0) * step, Space.World);
+        /*
+        if (i == 2)
+        {
+            runPanel.AddInformation("直升机下降");
+            i = 3;
+        }
+        */
+
     }
 
 
     void HelicopterUp()
     {
-        this.transform.Translate(new Vector3(0, 0.1f, 0) * speed * Time.fixedDeltaTime, Space.World);
-        runPanel.AddInformation("直升机上升");
+        this.transform.Translate(new Vector3(0, 0.1f, 0) * step , Space.World);
+        /*
+        if (i == 3)
+        {
+            runPanel.AddInformation("直升机上升");
+            i = 4;
+        }
+        */
+
     }
 
     void HelicopterBack()
     {
         this.transform.LookAt(Jidi_Position );
-        this.transform.Translate((Jidi_Position -this .transform .position ).normalized * speed * Time.fixedDeltaTime, Space.World);
-        runPanel.AddInformation("直升机返回");
+        this.transform.Translate((Jidi_Position -this .transform .position ).normalized * step , Space.World);
+        if (i == 2)
+        {
+            runPanel.AddInformation("飞行员被成功救起，直升机返回");
+            i = 3;
+        }
+
     }
 
     private void OnStart()
