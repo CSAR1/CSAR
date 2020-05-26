@@ -70,6 +70,7 @@ public class MainMenu : BasePanel
         //gameObject.SetActive(false);
         OnClosePanel();
         SimulationRun.runMode = RunMode.run;
+        EvaluationReset();
         OnPushPanel("Run");
         runPanel = GameObject.Find("RunPanel(Clone)").GetComponent<RunPanel>();
         runPanel.ShowInformation("暂无状态更新。");
@@ -84,5 +85,32 @@ public class MainMenu : BasePanel
         {
             RunModeButtons.SetActive(true);
         }
+    }
+
+    public void EvaluationReset()
+    {
+        ActionResult.reachSARArea = false; //是否到达搜索区域
+        ActionResult.findTarget = false; //是否搜索到待救目标
+        ActionResult.targetAlive = false; //待救目标是否还存活
+        ActionResult.targetRescued = false; //是否救起待救目标
+        ActionResult.returnToBase = false; //是否返回基地
+        ActionResult.missionSucceed = false; //任务是否成功
+
+        TimeResult.reachTime = -1f; //直升机到达搜索区域耗时
+        TimeResult.searchTime = -1f; //搜索耗时
+        TimeResult.reachTargetTime = -1f; //到达待救目标位置耗时
+        TimeResult.targetRescued = -1f; //救起待救目标耗时
+        TimeResult.returnToBase = -1f; //返回基地耗时
+        TimeResult.time = -1f; //行动总耗时
+
+        LossResult.aircraftLoss = 0; //装备损失数量
+        LossResult.peopleLoss = 0; //人员损失数量
+        LossResult.aircraftLossRate = 0f; //装备损失率
+        LossResult.peopleLossRate = 0f; //人员损失率
+
+        AttackResult.tankDestroied = 0; //击毁敌方装备数量
+        AttackResult.peopleKilled = 0; //击杀敌方人员数量
+
+        FuelResult.fuelConsumed = 0f; //救援直升机耗油量
     }
 }
