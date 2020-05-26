@@ -19,6 +19,7 @@ namespace UIFramework
         Warning,
         Info,
         Run,
-        Evaluation
+        Evaluation,
+        Score
     }
 }

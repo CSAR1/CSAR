@@ -39,9 +39,6 @@ public class EvaluationPanel : BasePanel
     public void OnClosePanel()
     {
         UIManager.Instance.PopPanel();
-        UIManager.Instance.PopPanel();
-        runModeButtons.SetActive(false);
-        UIManager.Instance.PushPanel(UIPanelType.MainMenu);
     }
 
     public void OnActionSelected()

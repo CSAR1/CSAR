@@ -68,6 +68,11 @@
         {
             "panelTypeString": "Evaluation",
             "path": "UI/EvaluationPanel"
+        },
+
+        {
+            "panelTypeString": "Score",
+            "path": "UI/ScorePanel"
         }
     ]
 }
