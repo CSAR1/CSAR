@@ -10,6 +10,7 @@ public class EvaluationPanel : BasePanel
     private CanvasGroup canvasGroup;
     private GameObject runModeButtons;
     public GameObject[] Buttons = new GameObject[5];
+    public GameObject[] Panels = new GameObject[5];
 
     private void Start()
     {
@@ -52,6 +53,11 @@ public class EvaluationPanel : BasePanel
         }
         Buttons[0].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
         Buttons[0].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        for (int i = 0; i < Panels.Length; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+        Panels[0].SetActive(true);
     }
 
     public void OnTimeSelected()
@@ -63,6 +69,11 @@ public class EvaluationPanel : BasePanel
         }
         Buttons[1].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
         Buttons[1].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        for (int i = 0; i < Panels.Length; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+        Panels[1].SetActive(true);
     }
 
     public void OnLossSelected()
@@ -74,6 +85,11 @@ public class EvaluationPanel : BasePanel
         }
         Buttons[2].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
         Buttons[2].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        for (int i = 0; i < Panels.Length; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+        Panels[2].SetActive(true);
     }
 
     public void OnAttackSelected()
@@ -85,6 +101,11 @@ public class EvaluationPanel : BasePanel
         }
         Buttons[3].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
         Buttons[3].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        for (int i = 0; i < Panels.Length; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+        Panels[3].SetActive(true);
     }
 
     public void OnFuelSelected()
@@ -96,5 +117,10 @@ public class EvaluationPanel : BasePanel
         }
         Buttons[4].GetComponent<Image>().color = new Color(10f / 255f, 7f / 255f, 7f / 255f, 144f / 255f);
         Buttons[4].GetComponentInChildren<Text>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        for (int i = 0; i < Panels.Length; i++)
+        {
+            Panels[i].SetActive(false);
+        }
+        Panels[4].SetActive(true);
     }
 }
