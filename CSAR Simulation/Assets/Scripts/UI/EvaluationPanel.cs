@@ -20,7 +20,7 @@ public class EvaluationPanel : BasePanel
     public Text returnToBase; //是否返回基地
     public Text missionSucceed; //任务是否成功
 
-    public Text reachTime; //直升机到达搜索区域耗时
+    public Text reachTime; //到达搜索区域耗时
     public Text searchTime; //搜索耗时
     public Text reachTargetTime; //到达待救目标位置耗时
     public Text targetRescuedTime; //救起待救目标耗时
@@ -76,7 +76,7 @@ public class EvaluationPanel : BasePanel
         returnToBase.text = ActionResult.returnToBase == true ? "是" : "否"; //是否返回基地
         missionSucceed.text = ActionResult.missionSucceed == true ? "是" : "否"; //任务是否成功
 
-        reachTime.text = TimeResult.reachTime > 0f ? TimeResult.reachTime.ToString("0.00") + "小时" : "无数据"; //直升机到达搜索区域耗时
+        reachTime.text = TimeResult.reachTime > 0f ? TimeResult.reachTime.ToString("0.00") + "小时" : "无数据"; //到达搜索区域耗时
         searchTime.text = TimeResult.searchTime > 0f ? TimeResult.searchTime.ToString("0.00") + "小时" : "无数据"; //搜索耗时
         reachTargetTime.text = TimeResult.reachTargetTime > 0f ? TimeResult.reachTargetTime.ToString("0.00") + "小时" : "无数据"; //到达待救目标位置耗时
         targetRescuedTime.text = TimeResult.targetRescued > 0f ? TimeResult.targetRescued.ToString("0.00") + "小时" : "无数据"; //救起待救目标耗时

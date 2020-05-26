@@ -104,7 +104,7 @@ namespace GlobalParameters
 
     static class TimeResult
     {
-        public static float reachTime = -1f; //直升机到达搜索区域耗时
+        public static float reachTime = -1f; //到达搜索区域耗时
         public static float searchTime = -1f; //搜索耗时
         public static float reachTargetTime = -1f; //到达待救目标位置耗时
         public static float targetRescued = -1f; //救起待救目标耗时

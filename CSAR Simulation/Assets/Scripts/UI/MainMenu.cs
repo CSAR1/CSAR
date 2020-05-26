@@ -96,7 +96,7 @@ public class MainMenu : BasePanel
         ActionResult.returnToBase = false; //是否返回基地
         ActionResult.missionSucceed = false; //任务是否成功
 
-        TimeResult.reachTime = -1f; //直升机到达搜索区域耗时
+        TimeResult.reachTime = -1f; //到达搜索区域耗时
         TimeResult.searchTime = -1f; //搜索耗时
         TimeResult.reachTargetTime = -1f; //到达待救目标位置耗时
         TimeResult.targetRescued = -1f; //救起待救目标耗时
