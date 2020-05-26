@@ -71,6 +71,7 @@ public class MainMenu : BasePanel
         OnClosePanel();
         SimulationRun.runMode = RunMode.run;
         EvaluationReset();
+        ScoreReset();
         OnPushPanel("Run");
         runPanel = GameObject.Find("RunPanel(Clone)").GetComponent<RunPanel>();
         runPanel.ShowInformation("暂无状态更新。");
@@ -113,4 +114,12 @@ public class MainMenu : BasePanel
 
         FuelResult.fuelConsumed = 0f; //救援直升机耗油量
     }
+
+    public void ScoreReset()
+    {
+        ScoreValue.actionScore = 0f;
+        ScoreValue.lossScore = 100f;
+        ScoreValue.attackScore = 0f;
+        ScoreValue.fuelScore = 100f;
+}
 }
