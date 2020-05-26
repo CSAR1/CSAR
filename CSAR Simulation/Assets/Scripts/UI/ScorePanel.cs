@@ -4,6 +4,7 @@ using UnityEngine;
 using UIFramework;
 using DG.Tweening;
 using UnityEngine.UI;
+using GlobalParameters;
 
 public class ScorePanel : BasePanel
 {
@@ -63,6 +64,10 @@ public class ScorePanel : BasePanel
 
     public void SetScore()
     {
-
+        action.text = ScoreValue.actionScore.ToString("0.00");
+        loss.text = ScoreValue.lossScore.ToString("0.00");
+        attack.text = ScoreValue.attackScore.ToString("0.00");
+        fuel.text = ScoreValue.fuelScore.ToString("0.00");
+        overall.text = ScoreValue.overallScore.ToString("0.00");
     }
 }
