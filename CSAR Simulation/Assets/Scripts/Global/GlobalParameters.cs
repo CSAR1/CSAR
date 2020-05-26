@@ -92,6 +92,45 @@ namespace GlobalParameters
         public static int weaponNum = 1; //武器数量
     }
 
+    static class ActionResult
+    {
+        public static bool reachSARArea = false; //是否到达搜索区域
+        public static bool findTarget = false; //是否搜索到待救目标
+        public static bool targetAlive = false; //待救目标是否还存活
+        public static bool targetRescued = false; //是否救起待救目标
+        public static bool returnToBase = false; //是否返回基地
+        public static bool missionSucceed = false; //任务是否成功
+    }
+
+    static class TimeResult
+    {
+        public static float reachTime = -1f; //直升机到达搜索区域耗时
+        public static float searchTime = -1f; //搜索耗时
+        public static float reachTargetTime = -1f; //到达待救目标位置耗时
+        public static float targetRescued = -1f; //救起待救目标耗时
+        public static float returnToBase = -1f; //返回基地耗时
+        public static float time = -1f; //行动总耗时
+    }
+
+    static class LossResult
+    {
+        public static int aircraftLoss = 0; //装备损失数量
+        public static int peopleLoss = 0; //人员损失数量
+        public static float aircraftLossRate = 0f; //装备损失率
+        public static float peopleLossRate = 0f; //人员损失率
+    }
+
+    static class AttackResult
+    {
+        public static int tankDestroied = 0; //击毁敌方装备数量
+        public static int peopleKilled = 0; //击杀敌方人员数量
+    }
+
+    static class FuelResult
+    {
+        public static float fuelConsumed = 0f; //救援直升机耗油量
+    }
+
     enum YDYH
     {
         A_10,
