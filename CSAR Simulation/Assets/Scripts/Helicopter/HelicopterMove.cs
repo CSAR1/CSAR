@@ -12,9 +12,10 @@ public class HelicopterMove : MonoBehaviour
 
     private Vector3 StartPosition;
     private Vector3 GoDirection;
+    private Vector3 Jidi_Position;
 
     public float TimePass_1=0;
-    public float speed = 100f;
+    public float speed = 1f;
     private float Height=0.7f;
 
     public bool Hover = true;
@@ -33,7 +34,7 @@ public class HelicopterMove : MonoBehaviour
     void Start()
     {
         StartPosition = new Vector3(2f, Height , 0.5f);
-
+        Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
         mainMenu.OnStart += OnStart;
     }
 
@@ -47,10 +48,10 @@ public class HelicopterMove : MonoBehaviour
             {
                 HelicopterHover();
 
-                if(TimePass_1 > 2)
+                if (TimePass_1 > 2)
                 {
-                Hover = false;
-                Go = true;
+                    Hover = false;
+                    Go = true;
                 }
 
             }
@@ -60,7 +61,7 @@ public class HelicopterMove : MonoBehaviour
                 GoDirection = new Vector3(Pilot.transform.position.x - this.transform.position.x, 0, Pilot.transform.position.z - this.transform.position.z);
 
                 HelicopterGo();
-                if (GoDirection .magnitude <1)
+                if (GoDirection .magnitude <0.1)
                 {
                     Go = false;
                     Down = true;
@@ -71,22 +72,35 @@ public class HelicopterMove : MonoBehaviour
             if (Down)
             {
                 HelicopterDown();
-                Down = false;
-                Up = true;
+                if ((this .transform .position  .y-Pilot .transform .position .y)<0.3)
+                {
+                    Down = false;
+                    Pilot.transform .Find ("PILOT/Default").GetComponent<Renderer>().enabled = false;//飞行员消失
+                    Up = true;
+                }
+
             }
 
             if (Up)
             {
                 HelicopterUp();
-                Up = false;
-                Back = true;
+                if (this .transform .position .y >0.7)
+                {
+                    Up = false;
+                    Back = true;
+                }
+
              
             }
 
             if(Back)
             {
                 HelicopterBack();
-                Back = false;
+                if ((Jidi_Position -this .transform .position ).magnitude <0.1)
+                {
+                    Back = false;
+                }
+
             }
             
 
@@ -114,17 +128,21 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterDown()
     {
+        this.transform.Translate(new Vector3 (0,-0.1f,0) * speed * Time.fixedDeltaTime, Space.World);
         runPanel.AddInformation("直升机下降");
     }
 
 
     void HelicopterUp()
     {
+        this.transform.Translate(new Vector3(0, 0.1f, 0) * speed * Time.fixedDeltaTime, Space.World);
         runPanel.AddInformation("直升机上升");
     }
 
     void HelicopterBack()
     {
+        this.transform.LookAt(Jidi_Position );
+        this.transform.Translate((Jidi_Position -this .transform .position ).normalized * speed * Time.fixedDeltaTime, Space.World);
         runPanel.AddInformation("直升机返回");
     }
 
