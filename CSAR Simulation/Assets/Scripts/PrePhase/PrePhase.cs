@@ -110,10 +110,15 @@ public class PrePhase : BasePanel
             if (EquipmentSelection.ydyh == YDYH.A_10)
             {
                 runPanel.ShowInformation(time.ToString("0.00") + "小时后：A-10攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
+                ActionResult.reachSARArea = true;
+                TimeResult.reachTime = time;
             }
             else if (EquipmentSelection.ydyh == YDYH.AC_130)
             {
                 runPanel.ShowInformation(time.ToString("0.00") + "小时后：AC-130攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
+                ActionResult.reachSARArea = true;
+
+                TimeResult.reachTime = time;
             }
         }
     }
