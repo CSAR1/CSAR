@@ -131,6 +131,15 @@ namespace GlobalParameters
         public static float fuelConsumed = 0f; //救援直升机耗油量
     }
 
+    static class ScoreValue
+    {
+        public static float actionScore = 0f;
+        public static float lossScore = 100f;
+        public static float attackScore = 0f;
+        public static float fuelScore = 100f;
+        public static float overallScore = 0.5f * actionScore + 0.2f * lossScore + 0.2f * attackScore + 0.1f * fuelScore;
+    }
+
     enum YDYH
     {
         A_10,

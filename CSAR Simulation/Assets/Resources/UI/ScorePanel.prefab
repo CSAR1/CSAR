@@ -1638,6 +1638,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85047a85a94373e499e9be9ece8031f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionScore: {fileID: 4878188852315340067}
+  lossScore: {fileID: 3429528244642006592}
+  attackScore: {fileID: 2017193395904546617}
+  fuelScore: {fileID: 7481113261781480467}
+  overallScore: {fileID: 6161423332458033093}
 --- !u!225 &3800543302153409453
 CanvasGroup:
   m_ObjectHideFlags: 0
