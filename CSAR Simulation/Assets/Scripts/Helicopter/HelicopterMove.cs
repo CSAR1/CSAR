@@ -6,11 +6,16 @@ using UIFramework;
 
 public class HelicopterMove : MonoBehaviour
 {
-    private GameObject pilot;
+    private GameObject Pilot;
     private MainMenu mainMenu;
     private RunPanel runPanel;
 
     private Vector3 StartPosition;
+    private Vector3 GoDirection;
+
+    public float TimePass_1=0;
+    public float speed = 100f;
+    private float Height=0.7f;
 
     public bool Hover = true;
     public bool Go = false;
@@ -20,15 +25,15 @@ public class HelicopterMove : MonoBehaviour
 
     void Awake()
     {
-        pilot = GameObject .Find("Pilot");
+        Pilot = GameObject .Find("Pilot");
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        StartPosition = new Vector3(2f, 0.7f, 0.5f);
-        this.transform.position = StartPosition;
+        StartPosition = new Vector3(2f, Height , 0.5f);
+
         mainMenu.OnStart += OnStart;
     }
 
@@ -37,18 +42,30 @@ public class HelicopterMove : MonoBehaviour
     {
         if (SimulationRun.runMode == RunMode.run)
         {
+            TimePass_1 += Time.fixedDeltaTime;
             if (Hover)
             {
                 HelicopterHover();
+
+                if(TimePass_1 > 2)
+                {
                 Hover = false;
                 Go = true;
+                }
+
             }
 
             if (Go)
             {
+                GoDirection = new Vector3(Pilot.transform.position.x - this.transform.position.x, 0, Pilot.transform.position.z - this.transform.position.z);
+
                 HelicopterGo();
-                Go = false;
-                Down = true;
+                if (GoDirection .magnitude <1)
+                {
+                    Go = false;
+                    Down = true;
+                }
+
             }
 
             if (Down)
@@ -80,6 +97,7 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterHover()
     {
+        this.transform.position = StartPosition;
         runPanel.AddInformation("直升机盘旋");
         Debug.Log("1");
 
@@ -87,6 +105,9 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterGo()
     {
+
+        this.transform.LookAt(new Vector3(Pilot.transform.position.x, Height, Pilot.transform .position.z));
+        this.transform.Translate(GoDirection.normalized * speed * Time.fixedDeltaTime, Space.World);
         runPanel.AddInformation("直升机出发");
         Debug.Log("2");
     }
