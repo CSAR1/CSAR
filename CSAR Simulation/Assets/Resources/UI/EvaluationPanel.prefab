@@ -2401,6 +2401,25 @@ MonoBehaviour:
   - {fileID: 642474756621296588}
   - {fileID: 642474756626206554}
   - {fileID: 642474756675768190}
+  reachSARArea: {fileID: 5910065955704895100}
+  findTarget: {fileID: 6398917528813219733}
+  targetAlive: {fileID: 4594317048402881250}
+  targetRescued: {fileID: 7818181621073356790}
+  returnToBase: {fileID: 2212578397998388388}
+  missionSucceed: {fileID: 4558918490687064914}
+  reachTime: {fileID: 5143184172947488088}
+  searchTime: {fileID: 4294223267165940959}
+  reachTargetTime: {fileID: 7640746934005898889}
+  targetRescuedTime: {fileID: 507403119033553286}
+  returnToBaseTime: {fileID: 1887701517770331723}
+  time: {fileID: 3694638050449288765}
+  aircraftLoss: {fileID: 836320250616982921}
+  peopleLoss: {fileID: 8785396754655879246}
+  aircraftLossRate: {fileID: 7952125389733983968}
+  peopleLossRate: {fileID: 3856687010351084638}
+  tankDestroied: {fileID: 5938903523565064048}
+  peopleKilled: {fileID: 1535063833440084913}
+  fuelConsumed: {fileID: 5115652789844389218}
 --- !u!1 &642474758034446994
 GameObject:
   m_ObjectHideFlags: 0
