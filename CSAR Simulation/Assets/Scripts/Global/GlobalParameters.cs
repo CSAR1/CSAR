@@ -9,6 +9,7 @@ namespace GlobalParameters
         public static RunMode runMode = RunMode.pause;
         public static PilotDetectedMode pilotDetectedMode = PilotDetectedMode.notFound;
         public static bool inputPhase = true;
+        public static bool pilotRecovered = false;
     }
 
     static class TaskDefinition
@@ -195,7 +196,6 @@ namespace GlobalParameters
         notFound,
         foundByEnemy,
         foundBySARTeam,
-        foundByBoth,
-        recovered,
+        foundByBoth
     }
 }

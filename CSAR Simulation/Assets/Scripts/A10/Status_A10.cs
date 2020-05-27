@@ -46,9 +46,9 @@ public class Status_A10 : MonoBehaviour
                 case PilotDetectedMode.foundByBoth:
                     // 发现，掩护函数
                     break;
-                case PilotDetectedMode.recovered:
+                //case PilotDetectedMode.recovered:
                     // 救援，撤离护航函数
-                    break;
+                    //break;
             }
         }
 
