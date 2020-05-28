@@ -16,7 +16,7 @@ public class HelicopterMove : MonoBehaviour
 
     private int i = 0;
     public float timePassed_1=0;
-    private float timePassed=0;
+    private float timePassed;
     public float speed ;
     private float step;
     private float Height=0.7f;
@@ -26,6 +26,7 @@ public class HelicopterMove : MonoBehaviour
     public bool Down = false;
     public bool Up = false;
     public  bool Back = false;
+    public bool Stop = false;
 
     public GameObject MH_53;
     public GameObject MH_60;
@@ -39,10 +40,10 @@ public class HelicopterMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartPosition = new Vector3(2.5f, Height , 1f);
-        Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
+        StartPosition = new Vector3(3f, Height , 1f);
+        //Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
 
-        speed = GlobalParameters.MH_53.speed;
+
         step = speed * 0.8f / 3600f / 50f * 2f;
         mainMenu.OnStart += OnStart;
     }
@@ -58,7 +59,7 @@ public class HelicopterMove : MonoBehaviour
             {
                 HelicopterHover();
 
-                if (timePassed_1 > 2)
+                if (timePassed > 1.35f)
                 {
                     Hover = false;
                     Go = true;
@@ -106,13 +107,18 @@ public class HelicopterMove : MonoBehaviour
             if(Back)
             {
                 HelicopterBack();
-                if ((Jidi_Position -this .transform .position ).magnitude <0.1)
+                if ((StartPosition  -this .transform .position ).magnitude <0.01)
                 {
                     Back = false;
+                    Stop = true;
                 }
 
             }
-            
+
+            if(Stop)
+            {
+                HelicopterStop();
+            }
 
         }
     }
@@ -124,7 +130,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.position = StartPosition;
         if (i == 0)
         {
-            runPanel.AddInformation("直升机盘旋");
+            //runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置");
             i = 1;
         }
 
@@ -139,7 +145,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.Translate(GoDirection.normalized * step , Space.World);
         if (i == 1)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机出发");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置。");
             i = 2;
         }
 
@@ -148,21 +154,21 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterDown()
     {
-        this.transform.Translate(new Vector3 (0,-0.5f,0) * step, Space.World);
-        /*
+        this.transform.Translate(new Vector3 (0,-0.3f,0) * step, Space.World);
+        
         if (i == 2)
         {
-            runPanel.AddInformation("直升机下降");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机锁定飞行员位置，开始实施救援。");
             i = 3;
         }
-        */
+        
 
     }
 
 
     void HelicopterUp()
     {
-        this.transform.Translate(new Vector3(0, 0.1f, 0) * step , Space.World);
+        this.transform.Translate(new Vector3(0, 0.5f, 0) * step , Space.World);
         /*
         if (i == 3)
         {
@@ -175,14 +181,24 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterBack()
     {
-        this.transform.LookAt(Jidi_Position );
-        this.transform.Translate((Jidi_Position -this .transform .position ).normalized * step , Space.World);
-        if (i == 2)
+        this.transform.LookAt(StartPosition  );
+        this.transform.Translate((StartPosition  -this .transform .position ).normalized * step , Space.World);
+        if (i == 3)
         {
-            runPanel.AddInformation("飞行员被成功救起，直升机返回");
-            i = 3;
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，飞行员被成功救起，直升机返回。");
+            i = 4;
         }
 
+    }
+
+    void HelicopterStop()
+    {
+        if (i == 4)
+        {
+            UIManager.Instance.PushInfo("搜救直升机安全返回基地，救援成功！");
+            SimulationRun.runMode = RunMode.pause;
+            i = 5;
+        }
     }
 
     private void OnStart()
@@ -193,7 +209,11 @@ public class HelicopterMove : MonoBehaviour
         Down = false;
         Up = false;
         Back = false;
+        Stop = false;
         i = 0;
+
+
+        timePassed = 1.3f;
         MeshRenderer[] renders_53 = MH_53.GetComponentsInChildren<MeshRenderer>();
         for (int j = 0; j < renders_53.Length; j++)
         {
@@ -208,6 +228,7 @@ public class HelicopterMove : MonoBehaviour
 
         if (EquipmentSelection.sar == SAR.MH_53)
         {
+            speed = GlobalParameters.MH_53.speed;
             for (int j = 0; j<renders_60.Length; j++)
 			{
                 renders_60[j].enabled = false;
@@ -216,6 +237,7 @@ public class HelicopterMove : MonoBehaviour
 
         else if (EquipmentSelection.sar == SAR.MH_60)
         {
+            speed = GlobalParameters.MH_60.speed;
             for (int j = 0; j < renders_53.Length; j++)
             {
                 renders_53[j].enabled = false;
