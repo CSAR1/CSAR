@@ -127,15 +127,23 @@ public class PrePhase : BasePanel
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
         if (SimulationRun.runMode == RunMode.run)
         {
+            if (EquipmentSelection.sar == SAR.MH_53)
+            {
+                runPanel.ShowInformation("0.36小时后：MH-53直升机已安全到达事发地附近基地降落，等待引导掩护机指示。");
+            }
+            else if (EquipmentSelection.sar == SAR.MH_60)
+            {
+                runPanel.ShowInformation("0.40小时后：MH-60直升机已安全到达事发地附近基地降落，等待引导掩护机指示。");
+            }
             if (EquipmentSelection.ydyh == YDYH.A_10)
             {
-                runPanel.ShowInformation(time.ToString("0.00") + "小时后：A-10攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
+                runPanel.AddInformation(time.ToString("0.00") + "小时后：A-10攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
                 ActionResult.reachSARArea = true;
                 TimeResult.reachTime = time;
             }
             else if (EquipmentSelection.ydyh == YDYH.AC_130)
             {
-                runPanel.ShowInformation(time.ToString("0.00") + "小时后：AC-130攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
+                runPanel.AddInformation(time.ToString("0.00") + "小时后：AC-130攻击机已安全到达事发地附近，遇险飞行员健康状况依然良好。");
                 ActionResult.reachSARArea = true;
 
                 TimeResult.reachTime = time;

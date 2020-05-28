@@ -40,7 +40,7 @@ public class HelicopterMove : MonoBehaviour
         Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
 
         speed = GlobalParameters.MH_53.speed;
-        step = speed * 0.8f / 3600f*0.5f;
+        step = speed * 0.8f / 3600f / 50f * 2f;
         mainMenu.OnStart += OnStart;
     }
 
@@ -136,7 +136,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.Translate(GoDirection.normalized * step , Space.World);
         if (i == 1)
         {
-            runPanel.AddInformation(timePassed.ToString() + "小时后：直升机出发");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机出发");
             i = 2;
         }
 
@@ -145,7 +145,7 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterDown()
     {
-        this.transform.Translate(new Vector3 (0,-0.1f,0) * step, Space.World);
+        this.transform.Translate(new Vector3 (0,-0.5f,0) * step, Space.World);
         /*
         if (i == 2)
         {
