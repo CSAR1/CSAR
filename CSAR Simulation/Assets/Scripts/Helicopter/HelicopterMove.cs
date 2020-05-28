@@ -209,6 +209,7 @@ public class HelicopterMove : MonoBehaviour
         {
 
             TimeResult.time = timePassed;//总耗时
+            ScoreValue.actionScore = (timePassed < 1.75f) ? 100f : (100f - (timePassed - 1.75f) * 60f);
             if (EquipmentSelection.sar == SAR.MH_53)
             {
                 FuelResult.fuelConsumed = GlobalParameters.MH_53.fuelWeight - fuel;
