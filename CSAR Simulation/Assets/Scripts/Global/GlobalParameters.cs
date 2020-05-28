@@ -59,7 +59,7 @@ namespace GlobalParameters
         public static int height = 1000; //飞行高度
         public static int maxDis = 1000; //最大航程
         public static int weight = 14515; //空重
-        public static int fuelWeight = 1000; //燃油重量
+        public static int fuelWeight = 3000; //燃油重量
         public static SARWeapon sarWeapon = SARWeapon.antiTank; //携带武器
         public static int weaponNum = 1; //武器数量
     }
@@ -83,12 +83,12 @@ namespace GlobalParameters
 
     static class MH_60
     {
-        public static int speed = 278; //巡航速度
+        public static int speed = 250; //巡航速度
         public static int num = 3; //载员人数
         public static int height = 1000; //飞行高度
         public static int maxDis = 1000; //最大航程
         public static int weight = 14515; //空重
-        public static int fuelWeight = 1000; //燃油重量
+        public static int fuelWeight = 3000; //燃油重量
         public static SARWeapon sarWeapon = SARWeapon.antiTank; //携带武器
         public static int weaponNum = 1; //武器数量
     }

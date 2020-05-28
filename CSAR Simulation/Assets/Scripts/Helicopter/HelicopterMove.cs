@@ -20,6 +20,7 @@ public class HelicopterMove : MonoBehaviour
     public float speed ;
     private float step;
     private float Height=0.7f;
+    public float fuel;
 
     public bool Hover = true;
     public bool Go = false;
@@ -54,6 +55,11 @@ public class HelicopterMove : MonoBehaviour
         if (SimulationRun.runMode == RunMode.run)
         {
             timePassed += 0.8f / 3600f;
+            //油量消耗模型
+            if (timePassed > 1.35f)
+            {
+                fuel -= (2275f / 3600f) * 0.8f;
+            }
             //timePassed_1 += Time.fixedDeltaTime;
             if (Hover)
             {
@@ -63,6 +69,7 @@ public class HelicopterMove : MonoBehaviour
                 {
                     Hover = false;
                     Go = true;
+                    fuel -= (2275f / 3600f) * 0.8f;
                 }
 
             }
@@ -75,6 +82,7 @@ public class HelicopterMove : MonoBehaviour
                 if (GoDirection .magnitude <0.1)
                 {
                     Go = false;
+                    TimeResult.reachTargetTime = timePassed;
                     Down = true;
                 }
 
@@ -87,6 +95,7 @@ public class HelicopterMove : MonoBehaviour
                 {
                     Down = false;
                     Pilot.transform .Find ("PILOT/Default").GetComponent<Renderer>().enabled = false;//飞行员消失
+                    TimeResult.targetRescued = timePassed;
                     Up = true;
                 }
 
@@ -110,6 +119,7 @@ public class HelicopterMove : MonoBehaviour
                 if ((StartPosition  -this .transform .position ).magnitude <0.01)
                 {
                     Back = false;
+                    TimeResult.returnToBase = timePassed;
                     Stop = true;
                 }
 
@@ -145,7 +155,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.Translate(GoDirection.normalized * step , Space.World);
         if (i == 1)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置。");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机接到引导掩护机指令，起飞前往目标位置。");
             i = 2;
         }
 
@@ -158,7 +168,7 @@ public class HelicopterMove : MonoBehaviour
         
         if (i == 2)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机锁定飞行员位置，开始实施救援。");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机锁定飞行员位置，开始实施救援。");
             i = 3;
         }
         
@@ -176,6 +186,8 @@ public class HelicopterMove : MonoBehaviour
             i = 4;
         }
         */
+        ActionResult.targetRescued = true;
+
 
     }
 
@@ -185,7 +197,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.Translate((StartPosition  -this .transform .position ).normalized * step , Space.World);
         if (i == 3)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，飞行员被成功救起，直升机返回。");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：飞行员被成功救起，直升机返回。");
             i = 4;
         }
 
@@ -195,9 +207,22 @@ public class HelicopterMove : MonoBehaviour
     {
         if (i == 4)
         {
+
+            TimeResult.time = timePassed;//总耗时
+            if (EquipmentSelection.sar == SAR.MH_53)
+            {
+                FuelResult.fuelConsumed = GlobalParameters.MH_53.fuelWeight - fuel;
+            }
+            else if (EquipmentSelection.sar == SAR.MH_60)
+            {
+                FuelResult.fuelConsumed = GlobalParameters.MH_60.fuelWeight - fuel;
+            }
             UIManager.Instance.PushInfo("搜救直升机安全返回基地，救援成功！");
             SimulationRun.runMode = RunMode.pause;
             i = 5;
+            ActionResult.targetAlive = true;
+            ActionResult.missionSucceed = true;
+            ActionResult.returnToBase = true;
         }
     }
 
@@ -230,6 +255,7 @@ public class HelicopterMove : MonoBehaviour
         if (EquipmentSelection.sar == SAR.MH_53)
         {
             speed = GlobalParameters.MH_53.speed;
+            fuel = GlobalParameters.MH_53.fuelWeight - 2275f * 0.36f;
             for (int j = 0; j<renders_60.Length; j++)
 			{
                 renders_60[j].enabled = false;
@@ -239,6 +265,7 @@ public class HelicopterMove : MonoBehaviour
         else if (EquipmentSelection.sar == SAR.MH_60)
         {
             speed = GlobalParameters.MH_60.speed;
+            fuel = GlobalParameters.MH_60.fuelWeight;
             for (int j = 0; j < renders_53.Length; j++)
             {
                 renders_53[j].enabled = false;
