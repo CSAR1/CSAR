@@ -26,7 +26,7 @@ namespace GlobalParameters
         public static int missileRange = 50; //对空导弹射程
         public static int missileMach = 2; //对空导弹马赫数
         public static int maxOverload = 15; //对空导弹最大过载
-        public static int detectR = 20; //探测范围半径
+        public static int detectR = 10; //探测范围半径
     }
 
     static class EquipmentSelection

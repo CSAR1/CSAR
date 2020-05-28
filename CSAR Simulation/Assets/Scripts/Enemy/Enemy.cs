@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private int detectR;
 
     private GameObject pilot;
+    private GameObject helicopter;
 
     private MainMenu mainMenu;
     private RunPanel runPanel;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
 
         enemyParent = gameObject.GetComponentInParent<EnemyGenerate>();
         pilot = GameObject.Find("Pilot");
+        helicopter = GameObject.Find("Helicopter");
         timePassed = 1.3f;
     }
     
@@ -37,12 +39,6 @@ public class Enemy : MonoBehaviour
         if (SimulationRun.runMode == RunMode.run)
         {
             timePassed += 0.8f / 3600f;
-
-            enemiesNum = enemyParent.enemiesNum;
-            missileRange = enemyParent.missileRange;
-            missileMach = enemyParent.missileMach;
-            maxOverload = enemyParent.maxOverload;
-            detectR = enemyParent.detectR;
             
             if (SimulationRun.pilotDetectedMode == PilotDetectedMode.notFound || SimulationRun.pilotDetectedMode == PilotDetectedMode.foundBySARTeam)
             {
@@ -77,6 +73,20 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
+            if (Vector3.Magnitude(transform.position - helicopter.transform.position) <= detectR)
+            {
+                float helicopterHit = Random.Range(0f, 10f);
+                if (helicopterHit <= 0.0003f)
+                {
+                    ScoreValue.lossScore -= 55f;
+                    LossResult.aircraftLoss += 1;
+                    LossResult.aircraftLossRate = 1f / 3f * 100;
+                    LossResult.peopleLoss += 5;
+                    LossResult.peopleLossRate = 5f / 7f * 100;
+                    SimulationRun.runMode = RunMode.pause;
+                    UIManager.Instance.PushInfo("救援直升机被敌方击落，救援失败。");
+                }
+            }
         }
     }
 
@@ -84,6 +94,12 @@ public class Enemy : MonoBehaviour
     {
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
         timePassed = 1.3f;
+
+        enemiesNum = enemyParent.enemiesNum;
+        missileRange = enemyParent.missileRange;
+        missileMach = enemyParent.missileMach;
+        maxOverload = enemyParent.maxOverload;
+        detectR = enemyParent.detectR;
     }
 
     private void OnTriggerEnter(Collider other)
