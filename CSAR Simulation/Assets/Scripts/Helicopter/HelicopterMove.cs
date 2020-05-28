@@ -15,8 +15,8 @@ public class HelicopterMove : MonoBehaviour
     private Vector3 Jidi_Position;
 
     private int i = 0;
-    public float timePassed_1=0;
-    private float timePassed;
+    //public float timePassed_1=0;
+    public  float timePassed;
     public float speed ;
     private float step;
     private float Height=0.7f;
@@ -44,7 +44,7 @@ public class HelicopterMove : MonoBehaviour
         //Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
 
 
-        step = speed * 0.8f / 3600f / 50f * 2f;
+
         mainMenu.OnStart += OnStart;
     }
 
@@ -54,7 +54,7 @@ public class HelicopterMove : MonoBehaviour
         if (SimulationRun.runMode == RunMode.run)
         {
             timePassed += 0.8f / 3600f;
-            timePassed_1 += Time.fixedDeltaTime;
+            //timePassed_1 += Time.fixedDeltaTime;
             if (Hover)
             {
                 HelicopterHover();
@@ -127,7 +127,7 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterHover()
     {
-        this.transform.position = StartPosition;
+
         if (i == 0)
         {
             //runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置");
@@ -212,6 +212,7 @@ public class HelicopterMove : MonoBehaviour
         Stop = false;
         i = 0;
 
+        this.transform.position = StartPosition;
 
         timePassed = 1.3f;
         MeshRenderer[] renders_53 = MH_53.GetComponentsInChildren<MeshRenderer>();
@@ -243,5 +244,7 @@ public class HelicopterMove : MonoBehaviour
                 renders_53[j].enabled = false;
             }
         }
+
+        step = speed * 0.8f / 3600f / 50f * 2f;
     }
 }
