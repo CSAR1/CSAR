@@ -19,7 +19,7 @@ public class HelicopterMove : MonoBehaviour
     public  float timePassed;
     public float speed ;
     private float step;
-    private float Height=0.7f;
+    private float Height = 0.5f;
     public float fuel;
 
     public bool Hover = true;
