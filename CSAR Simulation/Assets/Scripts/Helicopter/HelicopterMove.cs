@@ -129,6 +129,12 @@ public class HelicopterMove : MonoBehaviour
             {
                 HelicopterStop();
             }
+            if (fuel <= 0f)
+            {
+                fuel += 1000;
+                runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机完成一次空中加油。");
+                ScoreValue.fuelScore -= 20f;
+            }
 
         }
     }
@@ -140,7 +146,7 @@ public class HelicopterMove : MonoBehaviour
 
         if (i == 0)
         {
-            //runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置");
+            //runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机接到引导掩护机指令，起飞前往目标位置");
             i = 1;
         }
 
