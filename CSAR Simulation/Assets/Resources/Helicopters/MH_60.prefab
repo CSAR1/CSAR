@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2010074693295956550}
   - component: {fileID: 6599159870106776352}
   - component: {fileID: 1418466928413360710}
-  - component: {fileID: 4942314772361127461}
+  - component: {fileID: 6596113120594068231}
   m_Layer: 0
   m_Name: Rotor_main
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4942314772361127461
+--- !u!114 &6596113120594068231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

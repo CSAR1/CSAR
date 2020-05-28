@@ -4,7 +4,7 @@ using UnityEngine;
 using GlobalParameters;
 using UIFramework;
 
-public class RotorWing : MonoBehaviour
+public class RotorWingY : MonoBehaviour
 {
 
     private MainMenu mainMenu;
