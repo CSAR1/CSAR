@@ -36,7 +36,7 @@ public class HelicopterMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartPosition = new Vector3(2f, Height , 0.5f);
+        StartPosition = new Vector3(2.5f, Height , 1f);
         Jidi_Position = new Vector3(3f, 0.7f, 0.5f);
 
         speed = GlobalParameters.MH_53.speed;
@@ -185,5 +185,11 @@ public class HelicopterMove : MonoBehaviour
     private void OnStart()
     {
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
+        Hover = true;
+        Go = false;
+        Down = false;
+        Up = false;
+        Back = false;
+        i = 0;
     }
 }
