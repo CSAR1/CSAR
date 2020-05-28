@@ -27,6 +27,9 @@ public class HelicopterMove : MonoBehaviour
     public bool Up = false;
     public  bool Back = false;
 
+    public GameObject MH_53;
+    public GameObject MH_60;
+
     void Awake()
     {
         Pilot = GameObject .Find("Pilot");
@@ -191,5 +194,32 @@ public class HelicopterMove : MonoBehaviour
         Up = false;
         Back = false;
         i = 0;
+        MeshRenderer[] renders_53 = MH_53.GetComponentsInChildren<MeshRenderer>();
+        for (int j = 0; j < renders_53.Length; j++)
+        {
+            renders_53[j].enabled = true;
+        }
+
+        MeshRenderer[] renders_60 = MH_60.GetComponentsInChildren<MeshRenderer>();
+        for (int j = 0; j < renders_60.Length; j++)
+        {
+            renders_60[j].enabled = true;
+        }
+
+        if (EquipmentSelection.sar == SAR.MH_53)
+        {
+            for (int j = 0; j<renders_60.Length; j++)
+			{
+                renders_60[j].enabled = false;
+			}
+        }
+
+        else if (EquipmentSelection.sar == SAR.MH_60)
+        {
+            for (int j = 0; j < renders_53.Length; j++)
+            {
+                renders_53[j].enabled = false;
+            }
+        }
     }
 }
