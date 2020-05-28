@@ -22,7 +22,7 @@ public class RotorWing : MonoBehaviour
     {
         if (SimulationRun.runMode == RunMode.run)
         {
-            this.transform.Rotate(new Vector3(0, 0, speed_rotor));//螺旋桨旋转
+            this.transform.Rotate(new Vector3(0, speed_rotor, 0));//螺旋桨旋转
         }
     }
 }
