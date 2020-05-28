@@ -130,7 +130,7 @@ public class HelicopterMove : MonoBehaviour
 
         if (i == 0)
         {
-            //runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置");
+            //runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机接到引导掩护机指令，起飞前往目标位置");
             i = 1;
         }
 
@@ -145,7 +145,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.Translate(GoDirection.normalized * step , Space.World);
         if (i == 1)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机接到引导掩护机指令，起飞前往目标位置。");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机接到引导掩护机指令，起飞前往目标位置。");
             i = 2;
         }
 
@@ -158,7 +158,7 @@ public class HelicopterMove : MonoBehaviour
         
         if (i == 2)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，直升机锁定飞行员位置，开始实施救援。");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：直升机锁定飞行员位置，开始实施救援。");
             i = 3;
         }
         
@@ -185,7 +185,7 @@ public class HelicopterMove : MonoBehaviour
         this.transform.Translate((StartPosition  -this .transform .position ).normalized * step , Space.World);
         if (i == 3)
         {
-            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后，飞行员被成功救起，直升机返回。");
+            runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：飞行员被成功救起，直升机返回。");
             i = 4;
         }
 
