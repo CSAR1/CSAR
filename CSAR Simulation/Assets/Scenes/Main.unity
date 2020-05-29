@@ -8785,6 +8785,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5984816726311986135, guid: 5c15d59c5804f65449f0d4199f963970,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c15d59c5804f65449f0d4199f963970, type: 3}
 --- !u!1 &1188246785
@@ -11306,6 +11311,7 @@ MonoBehaviour:
   sweepWidth: 0
   pilotInSight: []
   enemyInsight: []
+  mode: 
 --- !u!1 &1555110849
 GameObject:
   m_ObjectHideFlags: 0
