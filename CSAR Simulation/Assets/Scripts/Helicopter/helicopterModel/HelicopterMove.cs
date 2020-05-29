@@ -94,7 +94,8 @@ public class HelicopterMove : MonoBehaviour
                 if ((this .transform .position  .y-Pilot .transform .position .y)<0.3)
                 {
                     Down = false;
-                    Pilot.transform .Find ("PILOT/Default").GetComponent<Renderer>().enabled = false;//飞行员消失
+                    Pilot.transform.Find("PILOT/Default").GetComponent<Renderer>().enabled = false; //飞行员消失
+                    Pilot.transform.Find("Icon").GetComponent<Renderer>().enabled = false; //Icon消失
                     TimeResult.targetRescued = timePassed;
                     Up = true;
                 }
@@ -243,6 +244,9 @@ public class HelicopterMove : MonoBehaviour
         Back = false;
         Stop = false;
         i = 0;
+        
+        Pilot.transform.Find("PILOT/Default").GetComponent<Renderer>().enabled = true; //飞行员出现
+        Pilot.transform.Find("Icon").GetComponent<Renderer>().enabled = true; //Icon出现
 
         this.transform.position = StartPosition;
 
