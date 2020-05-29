@@ -29,5 +29,12 @@ public class Rotate : MonoBehaviour
                 m_Transform.Rotate(Vector3.up * speed, Space.Self);
             }
         }
+        if (SimulationRun.runMode == RunMode.run)
+        {
+            if (gameObject.name == "Rotor")
+            {
+                m_Transform.Rotate(Vector3.up * speed, Space.Self);
+            }
+        }
     }
 }
