@@ -22,13 +22,23 @@ public class TestFlight: MonoBehaviour
     public float currentVelocityA10;
 
     // 定义地形中心
-    public GameObject targetTerrain;
+    private GameObject targetTerrain;
     private Vector3 initialStartPoint;
 
     // 定义距离计算差
     private double distanceDifference;
     private Vector3 postionDifferenceVector;
     private bool searchStatusA10;
+    // 扇形搜索区域半径
+    public float radiusSearchArea;
+    // 半径换算
+    private float currentRadius;
+    // 扇形搜索边数序号
+    private int pathNumber;
+    // 扇形搜索目标点列表
+    private List<Vector3> targetPosition = new List<Vector3>();
+    // 目标路径点重置
+    private bool pathReset;
 
 
     // 菜单控制
@@ -60,15 +70,15 @@ public class TestFlight: MonoBehaviour
         //mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
         //mainMenu.OnStart += InitValueA10;
         timePassed = 1.3f;
-        sweepWidth = 800;
+        sweepWidth = 8000;
 
-        // 性能设置
-        this.maxSpeedA10 = A_10.maxSpeed;
-        this.minSpeedA10 = A_10.minSpeed;
+        // 性能设置及换算
+        this.maxSpeedA10 = 0.1f;
+        this.minSpeedA10 = 0.05f;
         this.minRA10 = A_10.minR;
 
         // 搜索起始点
-        targetTerrain = GameObject.Find("Terrain/Target");
+        targetTerrain = GameObject.Find("/Terrain/Target");
         flightHeightA10 = 1.0f;
 
         // 入场起始点
@@ -80,11 +90,16 @@ public class TestFlight: MonoBehaviour
         // 获取碰撞器
         detectionBox = GetComponent<BoxCollider>();
 
-        // 抵达中心
-        searchStatusA10 = false;
-
         // 发现计次
         indexDetectionA10 = 0;
+        // 搜索状态
+        searchStatusA10 = false;
+        pathNumber = 0;
+
+        // 扇形搜索初始化
+        radiusSearchArea = 15000;
+        currentRadius = radiusSearchArea / 25000;
+        pathReset = true;
     }
 
     // Update is called once per frame
@@ -96,7 +111,7 @@ public class TestFlight: MonoBehaviour
     void FixedUpdate()
     {
         // 实时角速度
-        this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10 * 10;
+        this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10 * 100;
 
         SearchA10();
         DetectionA10();
@@ -167,44 +182,75 @@ public class TestFlight: MonoBehaviour
         Gizmos.DrawRay(this.transform.position, direction4);
     }
 
-    void SearchA10() // 搜索函数
-    {
 
+    // 前往目标点运动函数
+    void PathSetting(Vector3 targetPosition)
+    {
         // 获取初始所搜起始点坐标
-        initialStartPoint = new Vector3(targetTerrain.transform.position.x,flightHeightA10, targetTerrain.transform.position.z);
+        initialStartPoint = targetPosition;
 
         // 计算位置距离差
         distanceDifference = System.Math.Sqrt(System.Math.Pow((this.transform.position.x - initialStartPoint.x), 2)
-            + System.Math.Pow((this.transform.position.z - initialStartPoint.z), 2));
+            + System.Math.Pow((this.transform.position.y - initialStartPoint.y), 2));
 
-        // 计算方向向量
-        postionDifferenceVector = new Vector3((this.transform.position.x - initialStartPoint.x),
-            (this.transform.position.z - initialStartPoint.z), flightHeightA10).normalized;
 
-        if (searchStatusA10 == false)
+        // 是否到达搜索起始点
+        if (distanceDifference >= 0.2)
         {
-            // 是否到达搜索起始点
-            if (distanceDifference >= 0.1)
-            {
-                // 以最大飞行速度进入
-                this.currentVelocityA10 = 0.05f;
+            // 以最大飞行速度进入
+            this.currentVelocityA10 = this.maxSpeedA10;
 
-                Quaternion rotate = Quaternion.LookRotation(initialStartPoint - this.transform.position);
-                this.transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * angularVelocityA10);
-                this.transform.Translate(this.transform.forward * currentVelocityA10 * Time.deltaTime, Space.World);
-            }
-            else
-            {
-                searchStatusA10 = true;
-            }
+            Quaternion rotate = Quaternion.LookRotation(initialStartPoint - this.transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * angularVelocityA10);
+            transform.Translate(Vector3.forward * currentVelocityA10 * Time.deltaTime, Space.Self);
+            searchStatusA10 = false;
         }
         else
         {
+            searchStatusA10 = true;
+        }
+    }
+    void SearchA10() // 搜索函数
+    {
+        if (pathReset == true)
+        {
 
+            targetPosition.Clear();
+            // 路径点计算
+            // No.0 路径点，搜索中心
+            targetPosition.Add(new Vector3(targetTerrain.transform.position.x, flightHeightA10, targetTerrain.transform.position.z));
+            // No.1
+            targetPosition.Add(new Vector3((targetPosition[0].x - 0.5f * currentRadius), flightHeightA10, (targetPosition[0].z + 1.73f/2 * currentRadius)));
+            // No.2
+            targetPosition.Add(new Vector3((targetPosition[1].x + currentRadius), flightHeightA10, targetPosition[1].z));
+            // No.3
+            targetPosition.Add(new Vector3(targetPosition[0].x, flightHeightA10, targetPosition[0].z));
+            // No.4
+            targetPosition.Add(new Vector3((targetPosition[3].x - 0.5f * currentRadius), flightHeightA10, (targetPosition[3].z - 1.73f/2 * currentRadius)));
+            // No.5
+            targetPosition.Add(new Vector3((targetPosition[4].x - 0.5f * currentRadius), flightHeightA10, targetPosition[0].z));
+            // No.6
+            targetPosition.Add(new Vector3(targetPosition[0].x, flightHeightA10, targetPosition[0].z));
+            // No.7
+            targetPosition.Add(new Vector3((targetPosition[6].x + currentRadius), flightHeightA10, targetPosition[0].z));
+            // No.8
+            targetPosition.Add(new Vector3(targetPosition[2].x, flightHeightA10, targetPosition[4].z));
+
+            pathReset = false;
+        }
+
+        // 执行搜索
+        if (searchStatusA10 == false)
+        {
+            PathSetting(targetPosition[pathNumber]);
+        }
+        else
+        {
+            pathNumber += 1;
+            PathSetting(targetPosition[pathNumber]);
         }
 
 
-        // 
     }
 
     void CoverA10()

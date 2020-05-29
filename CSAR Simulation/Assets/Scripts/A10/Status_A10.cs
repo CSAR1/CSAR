@@ -6,6 +6,7 @@ using UIFramework;
 using System.Runtime.CompilerServices;
 using System;
 using UnityEngine.XR.WSA;
+using DG.Tweening.Plugins.Core.PathCore;
 
 public class Status_A10 : MonoBehaviour
 {
@@ -28,8 +29,24 @@ public class Status_A10 : MonoBehaviour
     // 定义距离计算差
     private double distanceDifference;
     private Vector3 postionDifferenceVector;
+
+    // 搜索路线切换
     private bool searchStatusA10;
 
+    // 扇形搜索区域半径
+    public float radiusSearchArea;
+    // 半径换算
+    private float currentRadius;
+    // 扇形搜索边数序号
+    private int pathNumber;
+    // 扇形搜索目标点列表
+    private List<Vector3> targetTerrainPosition = new List<Vector3>();
+
+    // 是否需要路径点切换
+    private bool pathSwitch;
+    // 目标路径点重置
+    private bool pathReset;
+ 
 
     // 菜单控制
     private MainMenu mainMenu;
@@ -49,6 +66,18 @@ public class Status_A10 : MonoBehaviour
     public List<GameObject> pilotInSight = new List<GameObject>();
     public List<GameObject> enemyInsight = new List<GameObject>();
 
+    // 探测计次
+    private int indexDetectionA10;
+
+    // 巡航半径
+    private float cruiseRadius;
+
+    // 飞行员目标
+    private GameObject targetPilot;
+    private Vector3 targetPilotPosition;
+    private List<Vector3> targetCruisePosition = new List<Vector3>();
+
+    public string mode;
 
     // Start is called before the first frame update
     void Start()
@@ -57,26 +86,12 @@ public class Status_A10 : MonoBehaviour
         // 仿真控制设置
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
         mainMenu.OnStart += InitValueA10;
-        timePassed = 1.3f;
 
 
-        // 性能设置
-        this.maxSpeedA10 = A_10.maxSpeed;
-        this.minSpeedA10 = A_10.minSpeed;
-        this.minRA10 = A_10.minR;
-
-        // 搜索起始点
-        targetTerrain = GameObject.Find("Terrain/Target");
-        flightHeightA10 = 2.0f;
-
-        // 入场起始点
-        this.transform.position = new Vector3(2, 2, flightHeightA10);
-
-        // 生命值设置
-        lifeA10 = 100;
-
-        // 获取碰撞器
-        detectionBox = this.GetComponent<BoxCollider>();
+        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
+        //runPanel.ShowInformation("")
+        //TimeResult.searchTime = 1f;
+        //ActionResult.findTarget = true;
     }
 
     // Update is called once per frame
@@ -87,6 +102,7 @@ public class Status_A10 : MonoBehaviour
 
     void FixedUpdate()
     {
+        mode = SimulationRun.pilotDetectedMode.ToString();
         // 实时角速度
         this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10;
 
@@ -96,63 +112,102 @@ public class Status_A10 : MonoBehaviour
             // 搜索发现
             DetectionA10();
 
-            switch (SimulationRun.pilotDetectedMode)
+            if (SimulationRun.pilotRecovered == false)
             {
-                case PilotDetectedMode.notFound:
-                    // 未被发现，搜索函数
-                    SearchA10();
-                    break;
+                // 飞行员未被救起
 
-                case PilotDetectedMode.foundByEnemy:
-                    // 未被发现，搜索函数
-                    SearchA10();
-                    break;
+                switch (SimulationRun.pilotDetectedMode)
+                {
+                    case PilotDetectedMode.notFound:
+                        // 未被发现，搜索函数
+                        SearchA10();
+                        break;
 
-                case PilotDetectedMode.foundBySARTeam:
-                    // 发现，掩护函数
-                    CoverA10();
-                    break;
+                    case PilotDetectedMode.foundByEnemy:
+                        // 未被发现，搜索函数
+                        SearchA10();
+                        break;
 
-                case PilotDetectedMode.foundByBoth:
-                    // 发现，掩护函数
-                    CoverA10();
-                    break;
+                    case PilotDetectedMode.foundBySARTeam:
+                        // 发现，掩护函数
+                        CoverA10();
+                        break;
+
+                    case PilotDetectedMode.foundByBoth:
+                        // 发现，掩护函数
+                        DefenseA10();
+                        break;
+                }
             }
+            else
+            {
+                // 飞行员已被救起
+                switch (SimulationRun.pilotDetectedMode)
+                {
+                    case PilotDetectedMode.foundBySARTeam:
+                        // 发现，掩护函数
+                        CoverA10();
+                        break;
+
+                    case PilotDetectedMode.foundByBoth:
+                        // 发现，掩护函数
+                        DefenseA10();
+                        break;
+                }
+            }
+
+            // timer
+            timePassed += 0.8f / 3600f;
+
         }
+
+
 
     }
 
     void DetectionA10()  // 探测函数
     {
-        // 发现计次
-        int indexDetectionA10 = 0;
 
         // 扫掠范围计算
-        horizontalDetection = sweepWidth / 50000f;
+        horizontalDetection = sweepWidth / 50000f * 2 / 2;
         verticalDetection = horizontalDetection / 2f;
 
         // 碰撞器体积设置
-        detectionBox.size = new Vector3(horizontalDetection * 2, verticalDetection * 2, flightHeightA10 * 2);
+        detectionBox.size = new Vector3(horizontalDetection * 2, flightHeightA10 * 2, verticalDetection * 2);
 
         // 碰撞触发判断
         if (pilotInSight.Count > 0)
         {
             if (indexDetectionA10 == 0)
             {
+
                 SimulationRun.pilotDetectedMode = PilotDetectedMode.foundBySARTeam;
+                //if (SimulationRun.pilotDetectedMode == PilotDetectedMode.foundByEnemy)
+                //{
+                //    SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByBoth;
+                //}
+                //else
+                //{
+                //    SimulationRun.pilotDetectedMode = PilotDetectedMode.foundBySARTeam;
+                //}
+
                 indexDetectionA10 = 1;
-                Console.WriteLine("Pilot has been found");
+                //Console.WriteLine("Pilot has been found");
+                targetPilot = GameObject.Find("/Pilot");
+                pathNumber = 0;
             }
         }
 
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)  // 通过进入碰撞器实现探测
     {
         if (other.tag == "Pilot")
         {
+
             pilotInSight.Add(other.gameObject);
+
         }
 
         if (other.tag == "Enemy")
@@ -162,16 +217,249 @@ public class Status_A10 : MonoBehaviour
     }
 
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)  // 通过退出碰撞器实现探测
     {
         if (other.tag == "Pilot")
         {
-            pilotInSight.Remove(other.gameObject);
+            // pilotInSight.Remove(other.gameObject);
         }
         if (other.tag == "Enemy")
         {
-            enemyInsight.Remove(other.gameObject);
+            // enemyInsight.Remove(other.gameObject);
         }
+    }
+
+    // 前往目标点运动函数
+    void PathSetting(Vector3 targetPosition)  // 寻路函数
+    {
+        // 获取初始所搜起始点坐标
+        initialStartPoint = targetPosition;
+
+        // 计算位置距离差
+        distanceDifference = System.Math.Sqrt(System.Math.Pow((this.transform.position.x - initialStartPoint.x), 2)
+            + System.Math.Pow((this.transform.position.y - initialStartPoint.y), 2));
+
+        // 计算方向向量
+        postionDifferenceVector = new Vector3((this.transform.position.x - initialStartPoint.x),
+            (this.transform.position.y - initialStartPoint.y), flightHeightA10).normalized;
+
+        // 以最大飞行速度进入
+        this.currentVelocityA10 = this.maxSpeedA10;
+
+        // 朝向预定位置飞行
+        Quaternion rotate = Quaternion.LookRotation(initialStartPoint - this.transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * angularVelocityA10);
+        transform.Translate(Vector3.forward * currentVelocityA10 * Time.deltaTime, Space.Self);
+
+        // 判断是否需要路径切换
+        if (pathSwitch == true)
+        {
+            // 是否到达搜索起始点
+            if (distanceDifference >= 0.2)
+            {
+                // 未到不切换
+                searchStatusA10 = false;
+            }
+            else
+            {
+                // 到达切换
+                searchStatusA10 = true;
+            }
+        }
+
+
+
+    }  
+
+    void SearchA10() // 搜索函数
+    {
+        // 需切换路径点
+        pathSwitch = true;
+
+        if (pathReset == true)
+        {
+
+            targetTerrainPosition.Clear();
+            // 路径点计算
+            // No.0 路径点，搜索中心
+            targetTerrainPosition.Add(new Vector3(targetTerrain.transform.position.x, flightHeightA10, targetTerrain.transform.position.z));
+            // No.1
+            targetTerrainPosition.Add(new Vector3((targetTerrainPosition[0].x - 0.5f * currentRadius), flightHeightA10, (targetTerrainPosition[0].z + 1.73f / 2f * currentRadius)));
+            // No.2
+            targetTerrainPosition.Add(new Vector3((targetTerrainPosition[1].x + currentRadius), flightHeightA10, targetTerrainPosition[1].z));
+            // No.3
+            targetTerrainPosition.Add(new Vector3(targetTerrainPosition[0].x, flightHeightA10, targetTerrainPosition[0].z));
+            // No.4
+            targetTerrainPosition.Add(new Vector3((targetTerrainPosition[3].x - 0.5f * currentRadius), flightHeightA10, (targetTerrainPosition[3].z - 1.73f / 2 * currentRadius)));
+            // No.5
+            targetTerrainPosition.Add(new Vector3((targetTerrainPosition[4].x - 0.5f * currentRadius), flightHeightA10, targetTerrainPosition[0].z));
+            // No.6
+            targetTerrainPosition.Add(new Vector3(targetTerrainPosition[0].x, flightHeightA10, targetTerrainPosition[0].z));
+            // No.7
+            targetTerrainPosition.Add(new Vector3((targetTerrainPosition[6].x + currentRadius), flightHeightA10, targetTerrainPosition[0].z));
+            // No.8
+            targetTerrainPosition.Add(new Vector3(targetTerrainPosition[2].x, flightHeightA10, targetTerrainPosition[4].z));
+            // No.9
+            targetTerrainPosition.Add(new Vector3(targetTerrainPosition[0].x, flightHeightA10, targetTerrainPosition[0].z));
+
+            pathReset = false;
+        }
+
+        if (SimulationRun.pilotDetectedMode == PilotDetectedMode.notFound || SimulationRun.pilotDetectedMode==PilotDetectedMode.foundByEnemy)
+        {
+            if (pathNumber < 9)
+            {
+                // 执行搜索
+                if (searchStatusA10 == false)
+                {
+                    PathSetting(targetTerrainPosition[pathNumber]);
+                }
+                else
+                {
+                    PathSetting(targetTerrainPosition[pathNumber]);
+                    pathNumber += 1;
+                }
+            }
+            else
+            {
+                pathNumber = 0;
+                PathSetting(targetTerrainPosition[pathNumber]);
+                
+            }
+        }
+        else
+        {
+            // 发现飞行员
+            CoverA10();
+        }
+
+    }
+
+    void CoverA10()  // 掩护函数
+    {
+        // 需切换路径点
+        pathSwitch = true;
+
+        // 设定巡航半径
+        if (horizontalDetection > minRA10)
+        {
+            cruiseRadius = horizontalDetection;
+        }
+        else
+        {
+            cruiseRadius = minRA10;
+        }
+
+        // 获取目标点坐标
+        targetPilotPosition = new Vector3(targetPilot.transform.position.x, targetPilot.transform.position.y, targetPilot.transform.position.z);
+
+        if (pathReset == true)
+        {
+            targetCruisePosition.Clear();
+            // No.0
+            targetCruisePosition.Add(new Vector3((targetPilotPosition.x + cruiseRadius), flightHeightA10, targetPilotPosition.z));
+            // No.1
+            targetCruisePosition.Add(new Vector3(targetPilotPosition.x, flightHeightA10, (targetPilotPosition.z - cruiseRadius)));
+            // No.2
+            targetCruisePosition.Add(new Vector3((targetPilotPosition.x - cruiseRadius), flightHeightA10, targetPilotPosition.z));
+            // No.3
+            targetCruisePosition.Add(new Vector3(targetPilotPosition.x, flightHeightA10, (targetPilotPosition.z + currentRadius)));
+
+            pathReset = false;
+
+        }
+        else
+        {
+            if (SimulationRun.pilotDetectedMode == PilotDetectedMode.foundBySARTeam && SimulationRun.pilotDetectedMode == PilotDetectedMode.foundByBoth)
+            {
+                if (pathNumber < 4 )
+                {
+                    // 执行搜索
+                    if (searchStatusA10 == false)
+                    {
+                        PathSetting(targetCruisePosition[pathNumber]);
+                    }
+                    else
+                    {
+                        PathSetting(targetCruisePosition[pathNumber]);
+                        pathNumber += 1;
+                    }
+                }
+                else
+                {
+                    pathNumber = 0;
+                    PathSetting(targetCruisePosition[pathNumber]);
+                }
+            }
+            else
+            {
+                SearchA10();
+            }
+        }
+
+
+    }
+
+    void DefenseA10()  // 护航攻击函数
+    {
+        // 不切换路径点
+        pathSwitch = false;
+
+        // 计算敌方和飞行员距离
+
+        // 判断距离最短的敌方，并设置为目标点
+
+        // 判断敌方生命值
+        // 距离较小时，执行打击函数（或脚本）
+
+
+    }
+
+    void InitValueA10()
+    {
+        lifeA10 = 100f; //剩余生命（换算成秒）
+
+        timePassed = 1.3f;
+
+        // 性能设置
+        //this.maxSpeedA10 = A_10.maxSpeed / 25000 * 40;
+        //this.minSpeedA10 = A_10.minSpeed / 25000 * 40;
+
+        this.maxSpeedA10 = 0.5f;
+        this.minSpeedA10 = 0.3f;
+        this.minRA10 = A_10.minR / 25000;
+
+        // 搜索起始点
+        targetTerrain = GameObject.Find("/Terrain/Target");
+
+        // 飞行高度
+        flightHeightA10 = 0.6f;
+
+        // 入场起始点
+        this.transform.position = new Vector3(0, flightHeightA10, 0);
+
+        // 生命值设置
+        lifeA10 = 100;
+
+        // 获取碰撞器
+        detectionBox = this.GetComponent<BoxCollider>();
+
+        // 发现计次
+        indexDetectionA10 = 0;
+
+        // 搜索状态
+        searchStatusA10 = false;
+        pathNumber = 0;
+
+        // 扇形搜索初始化
+        radiusSearchArea = 15000;
+        currentRadius = radiusSearchArea / 25000;
+        pathSwitch = false;
+        pathReset = true;
+
+        // 巡航半径
+        cruiseRadius = 0;
+        targetPilotPosition = new Vector3(0, 0, 0);
     }
 
     void OnDrawGizmosSelected()
@@ -180,7 +468,7 @@ public class Status_A10 : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 direction1 = new Vector3(horizontalDetection, -this.transform.position.y, verticalDetection);
         Gizmos.DrawRay(this.transform.position, direction1);
-        Vector3 direction2 = new Vector3(- horizontalDetection, -this.transform.position.y, verticalDetection);
+        Vector3 direction2 = new Vector3(-horizontalDetection, -this.transform.position.y, verticalDetection);
         Gizmos.DrawRay(this.transform.position, direction2);
         Vector3 direction3 = new Vector3(-horizontalDetection, -this.transform.position.y, -verticalDetection);
         Gizmos.DrawRay(this.transform.position, direction3);
@@ -188,64 +476,4 @@ public class Status_A10 : MonoBehaviour
         Gizmos.DrawRay(this.transform.position, direction4);
     }
 
-    void SearchA10() // 搜索函数
-    {
-
-        //
-        searchStatusA10 = false;
-
-        // 获取初始所搜起始点坐标
-        initialStartPoint = new Vector3(targetTerrain.transform.position.x, targetTerrain.transform.position.y, flightHeightA10);
-
-        // 计算位置距离差
-        distanceDifference = System.Math.Sqrt(System.Math.Pow((this.transform.position.x - initialStartPoint.x), 2)
-            + System.Math.Pow((this.transform.position.y - initialStartPoint.y), 2));
-
-        // 计算方向向量
-        postionDifferenceVector = new Vector3((this.transform.position.x - initialStartPoint.x), 
-            (this.transform.position.y - initialStartPoint.y), flightHeightA10).normalized;
-
-        if (searchStatusA10 == false)
-        {
-            // 是否到达搜索起始点
-            if (distanceDifference >= 0.1)
-            {
-                // 以最大飞行速度进入
-                this.currentVelocityA10 = this.maxSpeedA10;
-
-                Quaternion rotate = Quaternion.LookRotation(initialStartPoint - this.transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * angularVelocityA10);
-                transform.Translate(Vector3.forward * currentVelocityA10 * Time.deltaTime, Space.World);
-            }
-            else
-            {
-                searchStatusA10 = true;
-            }
-        }
-        else
-        {
-
-        }
-        
-
-        // 
-    }
-
-    void CoverA10()
-    {
-        // 掩护函数
-    }
-
-    void EscortA10()
-    {
-        // 护航函数
-    }
-
-    void InitValueA10()
-    {
-        lifeA10 = 100f; //剩余生命（换算成秒）
-
-        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
-    }
-    
 }
