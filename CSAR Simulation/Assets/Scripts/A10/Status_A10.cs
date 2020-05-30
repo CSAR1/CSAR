@@ -80,7 +80,8 @@ public class Status_A10 : MonoBehaviour
 
     // 测试监控全局量
     public string mode;
-    public string path;
+    public string status;
+    public float number;
 
     // Start is called before the first frame update
     void Start()
@@ -92,9 +93,7 @@ public class Status_A10 : MonoBehaviour
 
 
         runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
-        //runPanel.ShowInformation("")
-        //TimeResult.searchTime = 1f;
-        //ActionResult.findTarget = true;
+
     }
 
     // Update is called once per frame
@@ -106,7 +105,7 @@ public class Status_A10 : MonoBehaviour
     void FixedUpdate()
     {
         // 测试全局量
-        mode = SimulationRun.pilotDetectedMode.ToString();
+        //mode = SimulationRun.pilotDetectedMode.ToString();
         //path = targetTerrainPosition[pathNumber].ToString();
 
         // 实时角速度
@@ -179,27 +178,34 @@ public class Status_A10 : MonoBehaviour
         verticalDetection = horizontalDetection / 2f;
 
         // 碰撞器体积设置
-        detectionBox.size = new Vector3(horizontalDetection * 2, flightHeightA10 * 2, verticalDetection * 2);
+        detectionBox.size = new Vector3(horizontalDetection * 2 * 100, flightHeightA10 * 2 * 100, verticalDetection * 2 * 100);
 
         // 碰撞触发判断
         if (pilotInSight.Count > 0)
         {
             if (indexDetectionA10 == 0)
             {
-
-                SimulationRun.pilotDetectedMode = PilotDetectedMode.foundBySARTeam;
-                //if (SimulationRun.pilotDetectedMode == PilotDetectedMode.foundByEnemy)
-                //{
-                //    SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByBoth;
-                //}
-                //else
-                //{
-                //    SimulationRun.pilotDetectedMode = PilotDetectedMode.foundBySARTeam;
-                //}
+                if (SimulationRun.pilotDetectedMode == PilotDetectedMode.foundByEnemy)
+                {
+                    SimulationRun.pilotDetectedMode = PilotDetectedMode.foundByBoth;
+                }
+                else
+                {
+                    SimulationRun.pilotDetectedMode = PilotDetectedMode.foundBySARTeam;
+                }
 
                 indexDetectionA10 = 1;
                 //Console.WriteLine("Pilot has been found");
-                targetPilot = GameObject.Find("/Pilot");
+                targetPilot = pilotInSight[0];
+                pathNumber = 0;
+
+                // 输出时间及结果
+                runPanel.ShowInformation(timePassed.ToString("0.00") + "小时后：A10 已发现待救援飞行员");
+                TimeResult.searchTime = timePassed;
+                ActionResult.findTarget = true;
+
+                // 开启路径切换
+                pathReset = true;
                 pathNumber = 0;
             }
         }
@@ -211,8 +217,11 @@ public class Status_A10 : MonoBehaviour
     {
         if (other.tag == "Pilot")
         {
+            if (indexDetectionA10 == 0)
+            {
+                pilotInSight.Add(other.gameObject);
 
-            pilotInSight.Add(other.gameObject);
+            }
 
         }
 
@@ -276,6 +285,7 @@ public class Status_A10 : MonoBehaviour
 
     void SearchA10() // 搜索函数
     {
+        status = "Searching";
         // 需切换路径点
         pathSwitch = true;
 
@@ -313,18 +323,16 @@ public class Status_A10 : MonoBehaviour
 
         if (SimulationRun.pilotDetectedMode == PilotDetectedMode.notFound || SimulationRun.pilotDetectedMode==PilotDetectedMode.foundByEnemy)
         {
+            number = pathNumber;
             if (pathNumber < 9)
             {
                 // 执行搜索
                 if (searchStatusA10 == true)
                 {
                     pathNumber += 1;
-                    PathSetting(targetTerrainPosition[pathNumber]);
                 }
-                else
-                {
-                    PathSetting(targetTerrainPosition[pathNumber]);
-                }
+
+                PathSetting(targetTerrainPosition[pathNumber]);
             }
             else
             {
@@ -345,6 +353,10 @@ public class Status_A10 : MonoBehaviour
 
     void CoverA10()  // 掩护函数
     {
+        status = "Covering";
+
+        this.currentVelocityA10 = this.minSpeedA10;
+
         // 需切换路径点
         pathSwitch = true;
 
@@ -357,6 +369,9 @@ public class Status_A10 : MonoBehaviour
         {
             cruiseRadius = minRA10;
         }
+
+        // 放大巡航半径
+        cruiseRadius = cruiseRadius * 2f;
 
         // 获取目标点坐标
         targetPilotPosition = new Vector3(targetPilot.transform.position.x, targetPilot.transform.position.y, targetPilot.transform.position.z);
@@ -378,26 +393,24 @@ public class Status_A10 : MonoBehaviour
         }
         else
         {
-            if (SimulationRun.pilotDetectedMode == PilotDetectedMode.foundBySARTeam && SimulationRun.pilotDetectedMode == PilotDetectedMode.foundByBoth)
+
+            if (SimulationRun.pilotDetectedMode == PilotDetectedMode.foundBySARTeam || SimulationRun.pilotDetectedMode == PilotDetectedMode.foundByBoth)
             {
-                if (pathNumber < 4 )
+                number = pathNumber;
+
+                if (searchStatusA10 == true)
                 {
-                    // 执行搜索
-                    if (searchStatusA10 == false)
-                    {
-                        PathSetting(targetCruisePosition[pathNumber]);
-                    }
-                    else
-                    {
-                        PathSetting(targetCruisePosition[pathNumber]);
-                        pathNumber += 1;
-                    }
+                    pathNumber += 1;
                 }
-                else
+
+                if (pathNumber >= 4 )
                 {
+
                     pathNumber = 0;
-                    PathSetting(targetCruisePosition[pathNumber]);
                 }
+
+                PathSetting(targetCruisePosition[pathNumber]);
+
             }
             else
             {
@@ -448,10 +461,13 @@ public class Status_A10 : MonoBehaviour
         flightHeightA10 = 0.6f;
 
         // 入场起始点
-        this.transform.position = new Vector3(2, flightHeightA10, 0);
+        this.transform.position = new Vector3(2.5f, flightHeightA10, -0.5f);
 
         // 生命值设置
         lifeA10 = 100;
+
+        // 扫掠宽度
+        sweepWidth = 800;
 
         // 获取碰撞器
         detectionBox = this.GetComponent<BoxCollider>();
