@@ -37,9 +37,9 @@ namespace GlobalParameters
 
     static class A_10
     {
-        public static int maxSpeed = 700; //最大巡航速度
-        public static int minSpeed = 500; //最小巡航速度
-        public static int minR = 8; //最小转弯半径
+        public static int maxSpeed = 170; //最大巡航速度
+        public static int minSpeed = 150; //最小巡航速度
+        public static int minR = 80; //最小转弯半径
         public static int containMembers = 1; //载员能力
         public static int fuelWeight = 1800; //燃油重量
         public static float fuelConsumption = 1.2f; //耗油率

@@ -17,7 +17,7 @@ public class PrePhase : BasePanel
 
     void Start()
     {
-        distance = 650f;
+        distance = 65f;
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
         mainMenu.OnStart += InitPrameters;
     }

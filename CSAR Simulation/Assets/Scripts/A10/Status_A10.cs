@@ -38,7 +38,7 @@ public class Status_A10 : MonoBehaviour
     // 半径换算
     private float currentRadius;
     // 扇形搜索边数序号
-    private int pathNumber;
+    public int pathNumber;
     // 扇形搜索目标点列表
     private List<Vector3> targetTerrainPosition = new List<Vector3>();
 
@@ -77,7 +77,10 @@ public class Status_A10 : MonoBehaviour
     private Vector3 targetPilotPosition;
     private List<Vector3> targetCruisePosition = new List<Vector3>();
 
+
+    // 测试监控全局量
     public string mode;
+    public string path;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +105,10 @@ public class Status_A10 : MonoBehaviour
 
     void FixedUpdate()
     {
+        // 测试全局量
         mode = SimulationRun.pilotDetectedMode.ToString();
+        //path = targetTerrainPosition[pathNumber].ToString();
+
         // 实时角速度
         this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10;
 
@@ -243,9 +249,6 @@ public class Status_A10 : MonoBehaviour
         postionDifferenceVector = new Vector3((this.transform.position.x - initialStartPoint.x),
             (this.transform.position.y - initialStartPoint.y), flightHeightA10).normalized;
 
-        // 以最大飞行速度进入
-        this.currentVelocityA10 = this.maxSpeedA10;
-
         // 朝向预定位置飞行
         Quaternion rotate = Quaternion.LookRotation(initialStartPoint - this.transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * angularVelocityA10);
@@ -255,7 +258,7 @@ public class Status_A10 : MonoBehaviour
         if (pathSwitch == true)
         {
             // 是否到达搜索起始点
-            if (distanceDifference >= 0.2)
+            if (distanceDifference >= 0.1)
             {
                 // 未到不切换
                 searchStatusA10 = false;
@@ -275,6 +278,9 @@ public class Status_A10 : MonoBehaviour
     {
         // 需切换路径点
         pathSwitch = true;
+
+        // 以最大飞行速度进入
+        this.currentVelocityA10 = this.maxSpeedA10;
 
         if (pathReset == true)
         {
@@ -310,14 +316,14 @@ public class Status_A10 : MonoBehaviour
             if (pathNumber < 9)
             {
                 // 执行搜索
-                if (searchStatusA10 == false)
+                if (searchStatusA10 == true)
                 {
+                    pathNumber += 1;
                     PathSetting(targetTerrainPosition[pathNumber]);
                 }
                 else
                 {
                     PathSetting(targetTerrainPosition[pathNumber]);
-                    pathNumber += 1;
                 }
             }
             else
@@ -330,7 +336,9 @@ public class Status_A10 : MonoBehaviour
         else
         {
             // 发现飞行员
-            CoverA10();
+            // 构成循环引用问题
+
+            // CoverA10();
         }
 
     }
@@ -393,7 +401,9 @@ public class Status_A10 : MonoBehaviour
             }
             else
             {
-                SearchA10();
+                // 构成循环引用问题
+
+                // SearchA10();
             }
         }
 
@@ -425,9 +435,11 @@ public class Status_A10 : MonoBehaviour
         //this.maxSpeedA10 = A_10.maxSpeed / 25000 * 40;
         //this.minSpeedA10 = A_10.minSpeed / 25000 * 40;
 
-        this.maxSpeedA10 = 0.5f;
-        this.minSpeedA10 = 0.3f;
-        this.minRA10 = A_10.minR / 25000;
+        this.maxSpeedA10 = 0.2f;
+        this.minSpeedA10 = 0.1f;
+
+        // this.minRA10 = A_10.minR / 25000;
+        this.minRA10 = 0.1f;
 
         // 搜索起始点
         targetTerrain = GameObject.Find("/Terrain/Target");
@@ -436,7 +448,7 @@ public class Status_A10 : MonoBehaviour
         flightHeightA10 = 0.6f;
 
         // 入场起始点
-        this.transform.position = new Vector3(0, flightHeightA10, 0);
+        this.transform.position = new Vector3(2, flightHeightA10, 0);
 
         // 生命值设置
         lifeA10 = 100;

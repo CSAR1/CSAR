@@ -8725,10 +8725,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: A10
       objectReference: {fileID: 0}
+    - target: {fileID: 7571016566358900146, guid: 5c15d59c5804f65449f0d4199f963970,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6866580599486648225, guid: 5c15d59c5804f65449f0d4199f963970,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6866580599486648225, guid: 5c15d59c5804f65449f0d4199f963970,
         type: 3}
@@ -8790,7 +8795,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7571016566358900147, guid: 5c15d59c5804f65449f0d4199f963970, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5c15d59c5804f65449f0d4199f963970, type: 3}
 --- !u!1 &1188246785
 GameObject:
@@ -9325,7 +9331,7 @@ PrefabInstance:
     - target: {fileID: 5224925519133666101, guid: 318bd122b663a014490a1ad86a908ce7,
         type: 3}
       propertyPath: m_TagString
-      value: Pilot
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5224925519133666102, guid: 318bd122b663a014490a1ad86a908ce7,
         type: 3}
@@ -11308,10 +11314,12 @@ MonoBehaviour:
   lifeA10: 0
   timePassed: 0
   radiusSearchArea: 0
+  pathNumber: 0
   sweepWidth: 0
   pilotInSight: []
   enemyInsight: []
   mode: 
+  path: 
 --- !u!1 &1555110849
 GameObject:
   m_ObjectHideFlags: 0
