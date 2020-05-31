@@ -6,7 +6,7 @@ using UIFramework;
 
 public class HelicopterMove : MonoBehaviour
 {
-    private GameObject Pilot;
+    public  GameObject Pilot;
     private MainMenu mainMenu;
     private RunPanel runPanel;
 
@@ -34,7 +34,7 @@ public class HelicopterMove : MonoBehaviour
 
     void Awake()
     {
-        Pilot = GameObject .Find("Pilot");
+
         mainMenu = UIManager.Instance.GetPanel(UIPanelType.MainMenu) as MainMenu;
     }
 
@@ -94,7 +94,8 @@ public class HelicopterMove : MonoBehaviour
                 if ((this .transform .position  .y-Pilot .transform .position .y)<0.3)
                 {
                     Down = false;
-                    Pilot.transform.Find("PILOT/Default").GetComponent<Renderer>().enabled = false; //飞行员消失
+                    //Pilot.transform.Find("PILOT/Default").GetComponent<Renderer>().enabled = false; //飞行员消失
+
                     Pilot.transform.Find("Icon").GetComponent<Renderer>().enabled = false; //Icon消失
                     TimeResult.targetRescued = timePassed;
                     Up = true;
@@ -186,6 +187,7 @@ public class HelicopterMove : MonoBehaviour
     void HelicopterUp()
     {
         this.transform.Translate(new Vector3(0, 0.5f, 0) * step , Space.World);
+        Pilot.transform.position = this.transform.position;
         /*
         if (i == 3)
         {
@@ -202,6 +204,7 @@ public class HelicopterMove : MonoBehaviour
     {
         this.transform.LookAt(StartPosition  );
         this.transform.Translate((StartPosition  -this .transform .position ).normalized * step , Space.World);
+        Pilot.transform.position = this.transform.position;
         if (i == 3)
         {
             runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：飞行员被成功救起，直升机返回。");
@@ -212,6 +215,7 @@ public class HelicopterMove : MonoBehaviour
 
     void HelicopterStop()
     {
+        Pilot.transform.position = this.transform.position;
         if (i == 4)
         {
 
