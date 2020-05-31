@@ -6,7 +6,7 @@ using UIFramework;
 
 public class HelicopterMove : MonoBehaviour
 {
-    public  GameObject Pilot;
+    private GameObject Pilot;
     private MainMenu mainMenu;
     private RunPanel runPanel;
 
@@ -187,7 +187,7 @@ public class HelicopterMove : MonoBehaviour
     void HelicopterUp()
     {
         this.transform.Translate(new Vector3(0, 0.5f, 0) * step , Space.World);
-        Pilot.transform.position = this.transform.position;
+        Pilot.transform.position = this.transform.position;//
         /*
         if (i == 3)
         {
@@ -196,6 +196,7 @@ public class HelicopterMove : MonoBehaviour
         }
         */
         ActionResult.targetRescued = true;
+        SimulationRun.pilotRecovered = true;
 
 
     }
@@ -204,7 +205,7 @@ public class HelicopterMove : MonoBehaviour
     {
         this.transform.LookAt(StartPosition  );
         this.transform.Translate((StartPosition  -this .transform .position ).normalized * step , Space.World);
-        Pilot.transform.position = this.transform.position;
+        Pilot.transform.position = this.transform.position;//
         if (i == 3)
         {
             runPanel.AddInformation(timePassed.ToString("0.00") + "小时后：飞行员被成功救起，直升机返回。");
@@ -248,7 +249,10 @@ public class HelicopterMove : MonoBehaviour
         Back = false;
         Stop = false;
         i = 0;
-        
+
+        Pilot = GameObject.Find("/Pilot");
+
+
         Pilot.transform.Find("PILOT/Default").GetComponent<Renderer>().enabled = true; //飞行员出现
         Pilot.transform.Find("Icon").GetComponent<Renderer>().enabled = true; //Icon出现
 
