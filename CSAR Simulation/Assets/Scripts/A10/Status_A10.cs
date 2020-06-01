@@ -107,6 +107,7 @@ public class Status_A10 : MonoBehaviour
         // 测试全局量
         //mode = SimulationRun.pilotDetectedMode.ToString();
         //path = targetTerrainPosition[pathNumber].ToString();
+        mode = SimulationRun.pilotRecovered.ToString();
 
         // 实时角速度
         this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10;
@@ -388,14 +389,9 @@ public class Status_A10 : MonoBehaviour
             // No.3
             targetCruisePosition.Add(new Vector3(targetPilotPosition.x, flightHeightA10, (targetPilotPosition.z + cruiseRadius)));
 
-            if (SimulationRun.pilotRecovered == false)
-            {
-                pathReset = false;
-            }
-            else
-            {
-                pathReset = true;
-            }
+            
+            pathReset = false;
+
 
         }
         else
@@ -417,6 +413,15 @@ public class Status_A10 : MonoBehaviour
                 }
 
                 PathSetting(targetCruisePosition[pathNumber]);
+
+                if (SimulationRun.pilotRecovered == true)
+                {
+                    pathReset = true;
+                }
+                else
+                {
+                    pathReset = false;
+                }
 
             }
             else
