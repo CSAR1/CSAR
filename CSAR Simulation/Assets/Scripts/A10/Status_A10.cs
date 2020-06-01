@@ -92,8 +92,6 @@ public class Status_A10 : MonoBehaviour
         mainMenu.OnStart += InitValueA10;
 
 
-        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
-
     }
 
     // Update is called once per frame
@@ -495,6 +493,8 @@ public class Status_A10 : MonoBehaviour
         // 巡航半径
         cruiseRadius = 0;
         targetPilotPosition = new Vector3(0, 0, 0);
+
+        runPanel = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
     }
 
     void OnDrawGizmosSelected()
