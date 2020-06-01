@@ -385,15 +385,9 @@ public class Status_A10 : MonoBehaviour
             targetCruisePosition.Add(new Vector3((targetPilotPosition.x - cruiseRadius), flightHeightA10, targetPilotPosition.z));
             // No.3
             targetCruisePosition.Add(new Vector3(targetPilotPosition.x, flightHeightA10, (targetPilotPosition.z + cruiseRadius)));
+            
+            pathReset = false;
 
-            if (SimulationRun.pilotRecovered == false)
-            {
-                pathReset = false;
-            }
-            else
-            {
-                pathReset = true;
-            }
 
         }
         else
@@ -415,6 +409,15 @@ public class Status_A10 : MonoBehaviour
                 }
 
                 PathSetting(targetCruisePosition[pathNumber]);
+
+                if (SimulationRun.pilotRecovered == true)
+                {
+                    pathReset = true;
+                }
+                else
+                {
+                    pathReset = false;
+                }
 
             }
             else
