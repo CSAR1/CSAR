@@ -234,6 +234,7 @@ Transform:
   - {fileID: 5006512734811753571}
   - {fileID: 1330508187}
   - {fileID: 1542607545}
+  - {fileID: 1425112208}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,7 +259,7 @@ MonoBehaviour:
   Up: 0
   Back: 0
   Stop: 0
-  MH_53: {fileID: 8296172669191749232}
+  MH_53: {fileID: 1425112207}
   MH_60: {fileID: 1330508186}
 --- !u!1 &30374664
 GameObject:
@@ -10074,6 +10075,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401265939}
   m_Mesh: {fileID: -1200539453095828560, guid: 23c0531320c0ae146afa74e731b8395a, type: 3}
+--- !u!1001 &1425112206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 23168602}
+    m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_Name
+      value: MH-53
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8683fc256741ba6429c01944cd6a3d21, type: 3}
+--- !u!1 &1425112207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 8683fc256741ba6429c01944cd6a3d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 1425112206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1425112208 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 8683fc256741ba6429c01944cd6a3d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 1425112206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1426769099
 GameObject:
   m_ObjectHideFlags: 0
@@ -11352,12 +11434,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeA10: 0
-  timePassed: 0
-  radiusSearchArea: 0
-  pathNumber: 0
-  sweepWidth: 0
-  pilotInSight: []
-  enemyInsight: []
+  timePassedA10: 0
+  radiusSearchAreaA10: 0
+  pathNumberA10: 0
+  sweepWidthA10: 0
+  pilotInSightA10: []
+  enemyInsightA10: []
   mode: 
   status: 
   number: 0
@@ -16672,6 +16754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MH-53
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053749767910954917, guid: c3a100601f0c9624b8b0084d713fb122,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6320993195765622198, guid: c3a100601f0c9624b8b0084d713fb122,
         type: 3}
@@ -24248,12 +24335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
---- !u!1 &8296172669191749232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7053749767910954917, guid: c3a100601f0c9624b8b0084d713fb122,
-    type: 3}
-  m_PrefabInstance: {fileID: 1351670449648036309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8327477539421641306
 GameObject:
   m_ObjectHideFlags: 0
