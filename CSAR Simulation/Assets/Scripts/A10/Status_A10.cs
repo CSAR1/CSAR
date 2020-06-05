@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System;
 using UnityEngine.XR.WSA;
 using DG.Tweening.Plugins.Core.PathCore;
-using UnityEditor.Profiling.Memory.Experimental;
+//using UnityEditor.Profiling.Memory.Experimental;
 
 public class Status_A10 : MonoBehaviour
 {
