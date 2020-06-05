@@ -65,7 +65,7 @@ public class HelicopterMove : MonoBehaviour
             {
                 HelicopterHover();
 
-                if (timePassed > 1.35f)
+                if (SimulationRun.pilotDetectedMode==PilotDetectedMode.foundBySARTeam )
                 {
                     Hover = false;
                     Go = true;
