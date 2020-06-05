@@ -20,7 +20,7 @@ public class Rotate : MonoBehaviour
     {
         if (SimulationRun.runMode == RunMode.run || SimulationRun.inputPhase == true)
         {
-            if (gameObject.name == "A_10" || gameObject.name == "Plane001" || gameObject.name == "Plane002")
+            if (gameObject.name == "A_10" || gameObject.name == "Plane001" || gameObject.name == "Plane002" || gameObject.name == "A3_1")
             {
                 m_Transform.Rotate(Vector3.forward * speed, Space.Self);
             }
