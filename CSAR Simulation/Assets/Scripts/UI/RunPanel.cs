@@ -31,8 +31,9 @@ public class RunPanel : BasePanel
 
     private void FixedUpdate()
     {
-        timeText.text = "距搜救出动已过去：" + pilot.timePassed.ToString("0.00") + "小时";
-        lifeText.text = "待救目标剩余生命：" + (pilot.lifeLeft / pilot.life * 100f).ToString("0.00") + "%";
+        timeText.text = "距搜救出动已过去：\n\n" + pilot.timePassed.ToString("0.00") + "小时";
+        //lifeText.text = "待救目标剩余生命：" + (pilot.lifeLeft / pilot.life * 100f).ToString("0.00") + "%";
+        lifeText.text = "待救目标剩余存活时间：\n\n" + (pilot.lifeLeft / 3600f).ToString("0.00") + "小时";
     }
 
     public override void OnEnter()

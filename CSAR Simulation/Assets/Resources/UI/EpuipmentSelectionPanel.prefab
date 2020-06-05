@@ -1507,7 +1507,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u51FA \u52A8 \u9009 \u62E9"
+  m_Text: "\u84DD \u65B9 \u60F3 \u5B9A"
 --- !u!1 &7819302994544231520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3848,7 +3848,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7819302994111430245}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5967742
+  m_Size: 0.56935483
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
