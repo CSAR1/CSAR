@@ -91,7 +91,7 @@ public class HelicopterMove : MonoBehaviour
             if (Down)
             {
                 HelicopterDown();
-                if ((this .transform .position  .y-Pilot .transform .position .y)<0.3)
+                if ((this .transform .position  .y-Pilot .transform .position .y)<0.2)
                 {
                     Down = false;
                     //Pilot.transform.Find("PILOT/Default").GetComponent<Renderer>().enabled = false; //飞行员消失
@@ -106,7 +106,7 @@ public class HelicopterMove : MonoBehaviour
             if (Up)
             {
                 HelicopterUp();
-                if (this .transform .position .y >0.7)
+                if (this .transform .position .y >Height )
                 {
                     Up = false;
                     Back = true;
