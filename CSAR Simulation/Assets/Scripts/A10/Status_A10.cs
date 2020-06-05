@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System;
 using UnityEngine.XR.WSA;
 using DG.Tweening.Plugins.Core.PathCore;
-using UnityEditor.Profiling.Memory.Experimental;
+//using UnityEditor.Profiling.Memory.Experimental;
 
 public class Status_A10 : MonoBehaviour
 {
@@ -208,7 +208,7 @@ public class Status_A10 : MonoBehaviour
                 pathNumberA10 = 0;
 
                 // 输出时间及结果
-                runPanelA10.ShowInformation(timePassedA10.ToString("0.00") + "小时后：A10 已发现待救援飞行员");
+                runPanelA10.AddInformation(timePassedA10.ToString("0.00") + "小时后：A10 已发现待救援飞行员");
                 TimeResult.searchTime = timePassedA10;
                 ActionResult.findTarget = true;
 
