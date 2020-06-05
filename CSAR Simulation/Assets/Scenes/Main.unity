@@ -8569,6 +8569,11 @@ PrefabInstance:
       propertyPath: m_Time
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7571016566358900144, guid: 5c15d59c5804f65449f0d4199f963970,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7571016566358900145, guid: 5c15d59c5804f65449f0d4199f963970,
         type: 3}
       propertyPath: m_Size.x
