@@ -11,6 +11,7 @@ using DG.Tweening.Plugins.Core.PathCore;
 
 public class Status_A10 : MonoBehaviour
 {
+
     // 声明时间与飞机生命值
     public float lifeA10;
     public float timePassedA10;
@@ -63,9 +64,14 @@ public class Status_A10 : MonoBehaviour
     // 盒碰撞器定义
     private BoxCollider detectionBoxA10;
 
-    // 探测列表
+    // 飞行员探测列表
     public List<GameObject> pilotInSightA10 = new List<GameObject>();
+
+    // 敌方探测列表
     public List<GameObject> enemyInsightA10 = new List<GameObject>();
+    private List<float> enemyDistance = new List<float>();
+    private bool enemyUpdate;
+    private int enemyNumber;
 
     // 探测计次
     private int indexDetectionA10;
@@ -78,6 +84,9 @@ public class Status_A10 : MonoBehaviour
     private Vector3 targetPilotPositionA10;
     private List<Vector3> targetCruisePositionA10 = new List<Vector3>();
 
+    // 地方目标
+    private Vector3 targetEnemyA10;
+    private int indexEnemyA10;
 
     // 测试监控全局量
     public string mode;
@@ -439,21 +448,63 @@ public class Status_A10 : MonoBehaviour
 
     void DefenseA10()  // 护航攻击函数
     {
-        // 不切换路径点
-        pathSwitchA10 = false;
 
+        pathSwitchA10 = true;
+
+        enemyNumber = enemyInsightA10.Count;
+
+        // 现阶段演示不需要执行具体计算
         // 计算敌方和飞行员距离
+        //if (enemyUpdate)
+        //{
+        //    enemyDistance.Clear();
+
+        //    for(int i=0; i < enemyNumber; i++)
+        //    {
+        //        enemyDistance.Add((float)Math.Pow((enemyInsightA10[i].transform.position.x - pilotInSightA10[0].transform.position.x), 2f)
+        //            + (float)Math.Pow((enemyInsightA10[i].transform.position.z - pilotInSightA10[0].transform.position.z), 2f));
+        //    }
+
+        //}
+        //else
+        //{
+        //    enemyUpdate = true;
+        //}
 
         // 判断距离最短的敌方，并设置为目标点
-
         // 判断敌方生命值
         // 距离较小时，执行打击函数（或脚本）
+
+        // 获取目标点位置
+        if (indexEnemyA10 <= enemyNumber)
+        {
+            targetEnemyA10 = enemyInsightA10[indexEnemyA10].transform.position;
+            PathSetting(targetEnemyA10);
+            if (searchStatusA10 == true)
+            {
+                indexEnemyA10 += 1;
+            }
+        }
+        else
+        {
+            indexEnemyA10 = 0;
+        }
 
 
     }
 
     void InitValueA10()
     {
+        // 机型选择与脚本激活
+        if (EquipmentSelection.ydyh != YDYH.A_10)
+        {
+            GameObject.Find("A10").GetComponent<Status_A10>().enabled = false;
+        }
+        else
+        {
+            GameObject.Find("A10").GetComponent<Status_A10>().enabled = true;
+        }
+
         lifeA10 = 100f; //剩余生命（换算成秒）
 
         timePassedA10 = 1.3f;
@@ -502,6 +553,9 @@ public class Status_A10 : MonoBehaviour
         // 巡航半径
         cruiseRadiusA10 = 0;
         targetPilotPositionA10 = new Vector3(0, 0, 0);
+
+        // enemyUpdate = true;
+        indexEnemyA10 = 0;
 
         runPanelA10 = UIManager.Instance.GetPanel(UIPanelType.Run) as RunPanel;
     }
