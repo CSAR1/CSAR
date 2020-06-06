@@ -11,6 +11,8 @@ using DG.Tweening.Plugins.Core.PathCore;
 
 public class Status_A10 : MonoBehaviour
 {
+    // 初始朝向
+    private float headForwardA10;
 
     // 声明时间与飞机生命值
     public float lifeA10;
@@ -524,9 +526,12 @@ public class Status_A10 : MonoBehaviour
 
         // 飞行高度
         flightHeightA10 = 0.6f;
-
+        // 机头朝向
+        headForwardA10 = -45.0f;
         // 入场起始点
         this.transform.position = new Vector3(2.5f, flightHeightA10, -0.5f);
+        this.transform.rotation = Quaternion.Euler(0.0f, headForwardA10, 0.0f);
+
 
         // 生命值设置
         lifeA10 = 100;
