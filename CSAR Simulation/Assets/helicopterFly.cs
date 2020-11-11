@@ -12,7 +12,7 @@ public class helicopterFly : MonoBehaviour
     private bool back = false;
     public float speed;
 
-    private float h = 0f;
+    private float h = -0.5f;
 
     private Vector3 startPosition;
     private Vector3 distanceToPilot;
@@ -20,7 +20,7 @@ public class helicopterFly : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = new Vector3(0, h, 1.575f);
+        startPosition = new Vector3(0, h, -3f);
         this.transform.position =startPosition ;
     }
 

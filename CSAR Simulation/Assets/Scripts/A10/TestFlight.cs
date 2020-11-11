@@ -14,9 +14,9 @@ public class TestFlight: MonoBehaviour
     public float timePassed;
 
     // 定义飞行控制量
-    private float maxSpeedA10;
+    public float maxSpeedA10;
     private float minSpeedA10;
-    private float flightHeightA10;
+    public float flightHeightA10;
     private float minRA10;
     private float angularVelocityA10;
     public float currentVelocityA10;
@@ -73,16 +73,16 @@ public class TestFlight: MonoBehaviour
         sweepWidth = 8000;
 
         // 性能设置及换算
-        this.maxSpeedA10 = 0.1f;
+        // this.maxSpeedA10 = 0.1f;
         this.minSpeedA10 = 0.05f;
         this.minRA10 = A_10.minR;
 
         // 搜索起始点
-        targetTerrain = GameObject.Find("/Terrain/Target");
-        flightHeightA10 = 1.0f;
+        targetTerrain = GameObject.Find("/Terrain/Cube");
+        // flightHeightA10 = 1.0f;
 
         // 入场起始点
-        this.transform.position = new Vector3(2, flightHeightA10, 0);
+        this.transform.position = new Vector3(1, flightHeightA10, 0);
 
         // 生命值设置
         lifeA10 = 100;
@@ -114,7 +114,7 @@ public class TestFlight: MonoBehaviour
         this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10 * 100;
 
         SearchA10();
-        DetectionA10();
+        // DetectionA10();
 
     }
 
@@ -126,7 +126,7 @@ public class TestFlight: MonoBehaviour
         verticalDetection = horizontalDetection / 2f;
 
         // 碰撞器体积设置
-        detectionBox.size = new Vector3(horizontalDetection * 200, flightHeightA10 * 200, verticalDetection * 200);
+        // detectionBox.size = new Vector3(horizontalDetection * 200, flightHeightA10 * 200, verticalDetection * 200);
 
         // 碰撞触发判断
         if (pilotInSight.Count > 0)
