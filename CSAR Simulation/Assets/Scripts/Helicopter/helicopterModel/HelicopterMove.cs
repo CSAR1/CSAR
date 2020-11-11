@@ -6,7 +6,7 @@ using UIFramework;
 
 public class HelicopterMove : MonoBehaviour
 {
-    private GameObject Pilot;
+    public GameObject Pilot;
     private MainMenu mainMenu;
     private RunPanel runPanel;
 
