@@ -12,7 +12,7 @@ public class helicopterFly : MonoBehaviour
     private bool back = false;
     public float speed;
 
-    private float h = -0.5f;
+    private float h = -1f;
 
     private Vector3 startPosition;
     private Vector3 distanceToPilot;
