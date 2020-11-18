@@ -53,3 +53,4 @@ public class WarningPanel : BasePanel
         UIManager.Instance.PushPanel(UIPanelType.MainMenu);
     }
 }
+ 

@@ -6,13 +6,13 @@ using UnityEngine;
 public class helicopterFly : MonoBehaviour
 {
     public GameObject  pilot;
-    private bool fly = true;
-    private bool Down = false;
-    private bool up = false;
-    private bool back = false;
+    public bool fly = true;
+    public bool Down = false;
+    public bool up = false;
+    public bool back = false;
     public float speed;
 
-    private float h = -1f;
+    private float h = -0.8f;
 
     private Vector3 startPosition;
     private Vector3 distanceToPilot;
@@ -35,6 +35,7 @@ public class helicopterFly : MonoBehaviour
             this.transform.LookAt(new Vector3(pilot.transform.position.x, h, pilot.transform.position.z));
             if(distanceToPilot .magnitude < 0.01)
             {
+                Debug.Log("1");
                 fly = false;
                 Down = true;
             }
@@ -43,7 +44,7 @@ public class helicopterFly : MonoBehaviour
         if(Down)
         {
             this.transform.Translate(-transform.up *speed* Time.fixedDeltaTime, Space.World);
-            if((this .transform .position .y-pilot .transform .position.y) < 0.3)
+            if((this .transform .position .y-pilot .transform .position.y) < 0.1)
             {
                 Down = false;
                 pilot.GetComponent<Renderer>().enabled = false;

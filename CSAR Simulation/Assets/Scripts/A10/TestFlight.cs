@@ -40,6 +40,11 @@ public class TestFlight: MonoBehaviour
     // 目标路径点重置
     private bool pathReset;
 
+    // 护航位置状态判断
+    private bool coverStatus;
+    private GameObject helicopterGameobject;
+
+    public float cruiseRadiusA10;
 
     // 菜单控制
     private MainMenu mainMenu;
@@ -80,6 +85,8 @@ public class TestFlight: MonoBehaviour
         // 搜索起始点
         targetTerrain = GameObject.Find("/Terrain/Cube");
         // flightHeightA10 = 1.0f;
+        helicopterGameobject = GameObject.Find("helicopter");
+
 
         // 入场起始点
         this.transform.position = new Vector3(1, flightHeightA10, 0);
@@ -100,6 +107,7 @@ public class TestFlight: MonoBehaviour
         radiusSearchArea = 15000;
         currentRadius = radiusSearchArea / 25000;
         pathReset = true;
+        coverStatus = false;
     }
 
     // Update is called once per frame
@@ -113,7 +121,16 @@ public class TestFlight: MonoBehaviour
         // 实时角速度
         this.angularVelocityA10 = this.currentVelocityA10 / this.minRA10 * 100;
 
-        SearchA10();
+        if (coverStatus == false)
+        {
+            SearchA10();
+
+        }
+        else
+        {
+            pathReset = true;
+            CoverA10();
+        }
         // DetectionA10();
 
     }
@@ -239,15 +256,32 @@ public class TestFlight: MonoBehaviour
             pathReset = false;
         }
 
-        // 执行搜索
-        if (searchStatusA10 == false)
+        if (pathNumber < targetPosition.Count)
         {
             PathSetting(targetPosition[pathNumber]);
         }
         else
         {
-            pathNumber += 1;
-            PathSetting(targetPosition[pathNumber]);
+            coverStatus = true;
+            pathNumber = 0;
+        }
+
+
+        // 执行搜索
+        if (searchStatusA10 == false)
+        {
+        }
+        else
+        {
+            if (pathNumber < 9)
+            {
+                pathNumber += 1;
+            }
+            else
+            {
+                pathNumber = 0;
+                coverStatus = true;
+            }
         }
 
 
@@ -255,6 +289,67 @@ public class TestFlight: MonoBehaviour
 
     void CoverA10()
     {
+
+        if (pathReset == true)
+        {
+            targetPosition.Clear();
+            // 路径点计算
+            // No.0 路径点，搜索中心
+            targetPosition.Add(new Vector3(helicopterGameobject.transform.position.x + cruiseRadiusA10, flightHeightA10, helicopterGameobject.transform.position.z));
+            // No.1
+            targetPosition.Add(new Vector3(helicopterGameobject.transform.position.x, flightHeightA10, helicopterGameobject.transform.position.z - cruiseRadiusA10));
+            targetPosition.Add(new Vector3(helicopterGameobject.transform.position.x - cruiseRadiusA10, flightHeightA10, helicopterGameobject.transform.position.z));
+            targetPosition.Add(new Vector3(helicopterGameobject.transform.position.x, flightHeightA10, helicopterGameobject.transform.position.z - cruiseRadiusA10));
+            pathReset = false;
+
+
+        }
+
+        if (pathNumber < targetPosition.Count)
+        {
+            // Debug.Log("Covering"+pathNumber+ "//"+targetPosition[0]);
+
+            PathSetting(targetPosition[pathNumber]);
+        }
+        else
+        {
+            coverStatus = true;
+            pathNumber = 0;
+        }
+
+
+        // 执行搜索
+        if (searchStatusA10 == true)
+        {
+            if (pathNumber < 3)
+            {
+                pathNumber += 1;
+            }
+            else
+            {
+                pathNumber = 0;
+                coverStatus = true;
+            }
+        }
+
+        //// 执行搜索
+        //if (coverStatus == true)
+        //{
+
+        //    PathSetting(targetPosition[pathNumber]);
+        //}
+        //else
+        //{
+        //    if (pathNumber < 3)
+        //    {
+        //        pathNumber += 1;
+        //        PathSetting(targetPosition[pathNumber]);
+        //    }
+        //    else
+        //    {
+        //        pathNumber = 0;
+        //    }
+        //}
         // 掩护函数
     }
 
